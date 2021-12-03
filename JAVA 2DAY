@@ -1,0 +1,13 @@
+public class Main {
+  public static void main(String[] args) {
+    int a = 5;
+    double d = 5.5;
+    char c = 'A';
+    String str = "Hello";
+    
+    System.out.println(a);
+    System.out.println(b);
+    System.out.println(b);
+    System.out.println(str);
+  }
+}
