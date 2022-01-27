@@ -2,12 +2,15 @@ package apply;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Calendar;
+import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.text.AttributeSet.ColorAttribute;
 
 class JFrames extends JFrame implements ActionListener {
+	List<String> detail = new ArrayList<String>();
 	Container container = getContentPane();
 
 	// JPanel
@@ -18,49 +21,43 @@ class JFrames extends JFrame implements ActionListener {
 	JPanel panelDialog = new JPanel();
 
 	// JButton
-	JButton ButtonList = new JButton("my 알바리스트");
 	JButton ButtonCancel = new JButton("신청취소");
 	JButton ButtonNext = new JButton(">");
 	JButton ButtonLast = new JButton("<");
-	JButton ButtonApply = new JButton("신청");
-	JButton ButtonClose = new JButton("닫기");
 	JButton[] buttons = new JButton[49];
 	String[] dayNames = { "일", "월", "화", "수", "목", "금", "토" };
 	InfinityCalender infinityCalender = new InfinityCalender(buttons);
 
 	// JLabel
+	JLabel LabelMyList = new JLabel("my 알바리스트");
 	JLabel Labelmonth = new JLabel("월");
 	JLabel LabelList = new JLabel("신청목록");
 	JLabel LabelPay = new JLabel("my 알바비 <2022년 1월>"); // 나중에 달력 월 수에 맞게 바꿀 예정
 	JLabel Labelmonths = new JLabel("2022년 1월");
+	Font font = new Font("맑음고딕", Font.BOLD, 20);
+	Font font2 = new Font("맑음고딕", Font.BOLD, 10);
 
 	// JTextArea
-	JTextArea textAreaList = new JTextArea();
 	JTextArea textAreaPay = new JTextArea();
 	JTextArea textAreaCalender = new JTextArea();
 	JTextArea textAreaDialog = new JTextArea();
+	JTextArea textAreaList = new JTextArea();
 	JScrollPane scrollPaneList = new JScrollPane(textAreaList);
 	JScrollPane scrollPanePay = new JScrollPane(textAreaPay);
 	JScrollPane scrollPaneDialog = new JScrollPane(textAreaDialog);
 
-	// JDialog
-	JDialog dialog = new JDialog(this, "상세내용");
-	Container dialogContainer = dialog.getContentPane();
-	JLabel dialogLabel = new JLabel("신청되었습니다.", JLabel.CENTER);
+	// JOptionPane
+	JOptionPane popup = new JOptionPane();
 
-	// JCombobox
-	Integer[] month = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-	Integer[] year = { 2022, 2023, 2024, 2025 };
-	JComboBox<Integer> comboBox = new JComboBox<Integer>(month);
-	JComboBox<Integer> comboBox2 = new JComboBox<Integer>(year);
-
-	// JPopMenu
-	JPopupMenu popupMenu = new JPopupMenu();
-	JMenuItem menuItem1 = new JMenuItem("내용보기");
+//	// JCombobox
+//	Integer[] month = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+//	Integer[] year = {2022, 2023, 2024, 2025};
+//	JComboBox<Integer> comboBox = new JComboBox<Integer>(month);
+//	JComboBox<Integer> comboBox2 = new JComboBox<Integer>(year);
 
 	public JFrames() {
 		setTitle("일일 알바 관리 프로그램");
-		setSize(700, 500);
+		setSize(800, 500);
 		setLocationRelativeTo(null);
 		init();
 		start();
@@ -85,9 +82,8 @@ class JFrames extends JFrame implements ActionListener {
 			buttons[i].setFont(new Font("Gothic", Font.BOLD, 24));
 			buttons[i].setBackground(Color.WHITE);
 
-			if (i < 7) {
+			if (i < 7)
 				buttons[i].setText(dayNames[i]);
-			}
 
 			if (i % 7 == 0) { // 일요일 색상
 				buttons[i].setForeground(Color.red);
@@ -106,39 +102,28 @@ class JFrames extends JFrame implements ActionListener {
 
 		// panelEast
 		panelEast.setLayout(new GridLayout(6, 1));
-		panelEast.add(ButtonList);
+		panelEast.add(LabelMyList);
 		panelEast.add(LabelList);
 		panelEast.add(scrollPaneList);
-		textAreaList.setEditable(false);
 		panelEast.add(ButtonCancel);
 		panelEast.add(LabelPay);
 		panelEast.add(scrollPanePay);
+		textAreaList.setEditable(false);
 		textAreaPay.setEditable(false);
-
-		dialog.setSize(200, 150);
-		dialog.setLocationRelativeTo(null);
-		dialogContainer.setLayout(new BorderLayout());
-		dialogContainer.add("Center", scrollPaneDialog);
-		textAreaDialog.setEditable(false);
-		dialogContainer.add("South", panelDialog);
-		dialogLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
-
-		// panelDialog
-		panelDialog.setLayout(new FlowLayout(FlowLayout.CENTER));
-		panelDialog.add(ButtonApply);
-		panelDialog.add(ButtonClose);
+		LabelMyList.setHorizontalAlignment(JLabel.CENTER);
+		LabelMyList.setFont(font);
+		LabelList.setHorizontalAlignment(JLabel.CENTER);
+		LabelList.setFont(font);
+		LabelPay.setHorizontalAlignment(JLabel.CENTER);
+		LabelPay.setFont(font2);
 	}
 
 	private void start() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		dialog.setDefaultCloseOperation(HIDE_ON_CLOSE);
-		ButtonApply.addActionListener(this);
 		ButtonCancel.addActionListener(this);
-		ButtonClose.addActionListener(this);
 		ButtonLast.addActionListener(this);
-		ButtonList.addActionListener(this);
 		ButtonNext.addActionListener(this);
-		comboBox.addActionListener(this);
+		// comboBox.addActionListener(this);
 		for (int i = 0; i < buttons.length; i++) {
 			buttons[i].addActionListener(this);
 		}
@@ -146,47 +131,51 @@ class JFrames extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == ButtonList) {
-			dialog.setVisible(true);
-		} else if (e.getSource() == ButtonNext) {
+
+		if (e.getSource() == ButtonNext) {
 			infinityCalender.allinit(1);
 			LabelPay.setText("my 알바비 <" + infinityCalender.getCalText2() + infinityCalender.getCalText() + ">");
 			Labelmonths.remove(Labelmonths);
 			Labelmonths.setText(infinityCalender.getCalText2() + infinityCalender.getCalText());
+			for (int i = 0; i < buttons.length; i++) {
+				buttons[i].setBackground(Color.WHITE);
+			}
 		} else if (e.getSource() == ButtonLast) {
 			infinityCalender.allinit(-1);
 			LabelPay.setText("my 알바비 <" + infinityCalender.getCalText2() + infinityCalender.getCalText() + ">");
 			Labelmonths.remove(Labelmonths);
 			Labelmonths.setText(infinityCalender.getCalText2() + infinityCalender.getCalText());
-		} else if (e.getSource() == ButtonApply) {
-
-		} else if (e.getSource() == ButtonCancel) {
-
-		} else if (e.getSource() == comboBox) {
-//			LabelPay.remove(LabelPay);
-//			LabelPay.setText("my 알바비 <" + comboBox.getSelectedItem() + "월>");
-//			infinityCalender.allinit((Integer)comboBox.getSelectedItem());
 		} else
 			for (int i = 0; i < buttons.length; i++) {
 				if (e.getSource() == buttons[i]) {
-					buttons[i].setBackground(Color.GREEN);
-					JOptionPane popup = new JOptionPane();
-					int result = popup.showConfirmDialog(null, "내용", "아르바이트 상세 내용", JOptionPane.YES_NO_OPTION);
+					buttons[i].setBackground(Color.GREEN);		// buttons[i]에 색상 지정
+					String day = infinityCalender.getCalText2() + infinityCalender.getCalText() +buttons[i].getText() + "일";	// day변수에 날짜 저장
+					int result = popup.showConfirmDialog(null, "a", day + "아르바이트 상세 내용", JOptionPane.YES_NO_OPTION);	// result 변수에 yes 클릭시 0저장, no클릭시 1저장
+					detail.add(day);			// detail 배열에 day값 저장
 					if (result == 0) {
-						buttons[i].setBackground(Color.GREEN);
+						for(int j = 0; j < detail.size(); j ++) {
+							textAreaList.setText(detail.get(j).toString() + "\n");		// textAreaList에 detail 배열값 출력
+							textAreaList.append("---------------------" + "\n");
+							for(int a = 0; a<j; a++) {
+								textAreaList.append(detail.get(a).toString() + "\n");		// textAreaList에 다음 detail 배열값 출력
+							}
+						}
 					} else {
-						buttons[i].setBackground(Color.WHITE);
+						buttons[i].setBackground(Color.WHITE);		// result 값이 1이면 buttons[i] 배경을 흰색으로
+						for(int j = 0; j<detail.size(); j++) {
+							textAreaList.setText(detail.get(j).toString() + "X\n");
+							}
+						}
 					}
 				}
-			}
-
-		ButtonClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dialog.dispose();
-			}
-		});
+			}	
 	}
-}
+
+//		} else if(e.getSource() == comboBox) {
+//		LabelPay.remove(LabelPay);
+//		LabelPay.setText("my 알바비 <" + comboBox.getSelectedItem() + "월>");
+//		infinityCalender.allinit((Integer)comboBox.getSelectedItem());
+//	} 
 
 public class ApplyFrame {
 	public static void main(String[] args) {

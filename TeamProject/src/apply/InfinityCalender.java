@@ -8,14 +8,13 @@ import javax.swing.JButton;
 public class InfinityCalender{
 	JButton[] buttons;
 	Calendar calendar;
-	int year, month, dd;
+	int year, month;
 
 	public InfinityCalender(JButton[] buttons) {
 		this.buttons = buttons;
 		calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
 		month = calendar.get(Calendar.MONTH) + 1;
-		dd = calendar.get(Calendar.DATE);
 	}
 
 	// Label에 출력할 문자열
@@ -26,11 +25,7 @@ public class InfinityCalender{
 	public String getCalText2() {
 		return  year + "년";
 	}
-	
-	public String getCalText3() {
-		return  dd + "일";
-	}
-	
+
 	public void calSet() {
 		// 년월일 설정
 		calendar.set(year, month - 1, 1);
