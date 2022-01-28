@@ -11,8 +11,8 @@ public class ApplyDTO {
 	private String wage;
 	private String payday;
 	private int hour;
-	private boolean applyStatus = false;
-	private boolean approveStatus = false;
+	private String applyStatus;
+	private String approveStatus;
 	
 	public ApplyDTO() {
 		super();
@@ -34,7 +34,7 @@ public class ApplyDTO {
 		this.payday = payday;
 	}
 
-	public ApplyDTO(int hour, boolean applyStatus, boolean approveStatus) {
+	public ApplyDTO(int hour, String applyStatus, String approveStatus) {
 		super();
 		this.hour = hour;
 		this.applyStatus = applyStatus;
@@ -127,19 +127,19 @@ public class ApplyDTO {
 		this.hour = hour;
 	}
 
-	public boolean isApplyStatus() {
+	public String isApplyStatus() {
 		return applyStatus;
 	}
 
-	public void setApplyStatus(boolean applyStatus) {
+	public void setApplyStatus(String applyStatus) {
 		this.applyStatus = applyStatus;
 	}
 
-	public boolean isApproveStatus() {
+	public String isApproveStatus() {
 		return approveStatus;
 	}
 
-	public void setApproveStatus(boolean approveStatus) {
+	public void setApproveStatus(String approveStatus) {
 		this.approveStatus = approveStatus;
 	}
 	

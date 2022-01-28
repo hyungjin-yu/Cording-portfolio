@@ -48,7 +48,6 @@ class JFrames extends JFrame implements ActionListener {
 
 	// JOptionPane
 	JOptionPane popup = new JOptionPane();
-
 //	// JCombobox
 //	Integer[] month = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 //	Integer[] year = {2022, 2023, 2024, 2025};
@@ -131,7 +130,11 @@ class JFrames extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		int hour = 3;
+		String applyStatus = "신청";
+		String approveStatus = "승인";
+		ApplyDAO dao = new ApplyDAO();
+		ApplyDTO dto = new ApplyDTO(hour, applyStatus, approveStatus);
 		if (e.getSource() == ButtonNext) {
 			infinityCalender.allinit(1);
 			LabelPay.setText("my 알바비 <" + infinityCalender.getCalText2() + infinityCalender.getCalText() + ">");
@@ -154,16 +157,17 @@ class JFrames extends JFrame implements ActionListener {
 					detail.add(day);			// detail 배열에 day값 저장
 					if (result == 0) {
 						for(int j = 0; j < detail.size(); j ++) {
-							textAreaList.setText(detail.get(j).toString() + "\n");		// textAreaList에 detail 배열값 출력
+							dao.insert(dto);
+							textAreaList.setText(detail.get(j).toString() + "a" + "\n");		// textAreaList에 detail 배열값 출력
 							textAreaList.append("---------------------" + "\n");
 							for(int a = 0; a<j; a++) {
-								textAreaList.append(detail.get(a).toString() + "\n");		// textAreaList에 다음 detail 배열값 출력
+								textAreaList.append(detail.get(a).toString() + "a" + "\n");		// textAreaList에 다음 detail 배열값 출력
 							}
 						}
 					} else {
 						buttons[i].setBackground(Color.WHITE);		// result 값이 1이면 buttons[i] 배경을 흰색으로
 						for(int j = 0; j<detail.size(); j++) {
-							textAreaList.setText(detail.get(j).toString() + "X\n");
+							textAreaList.setText(detail.get(j).toString() + "a" + "X\n");
 							}
 						}
 					}

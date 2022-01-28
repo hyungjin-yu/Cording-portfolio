@@ -13,7 +13,7 @@ public class ApplyDAO {
 	
 	public ApplyDAO() {
 		try {
-			Class.forName("");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 등록 실패");
 			//e.printStackTrace();
@@ -22,9 +22,9 @@ public class ApplyDAO {
 	
 	public Connection getConnection() {
 		Connection conn = null;
-		String url = "";
-		String name = "";
-		String password = "";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String name = "C##dbexam";
+		String password = "m1234";
 		
 		try {
 			conn = DriverManager.getConnection(url, name, password);
@@ -48,5 +48,26 @@ public class ApplyDAO {
 		}
 	}
 	
-	
+	// 입력
+	public int insert(ApplyDTO dto) {
+		String sql = "insert into apply values(?, ?, ?, ?)";
+		int result = 0;
+		conn = getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getHour());
+			pstmt.setString(2, dto.isApplyStatus());
+			pstmt.setString(3, dto.isApproveStatus());
+			pstmt.setString(4, null);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("저장 실패");
+			//e.printStackTrace();
+		} finally {
+			close();
+		}
+		return result;
+	}
 }
