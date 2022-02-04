@@ -31,6 +31,14 @@ public class AdminDTO {
 		this.payday = payday;
 	}
 	
+	
+	public AdminDTO(String details, int wage, String payday) {
+		super();
+		this.details = details;
+		this.wage = wage;
+		this.payday = payday;
+	}
+
 	@Override
 	public String toString() {
 		//return "<html>날짜 : " + date + "<br>시간 : " + time + "<br>장소 : " + loc + "<br>하는 일 : " + job + "<br>세부내용 : " + details

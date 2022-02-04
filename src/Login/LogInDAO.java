@@ -70,7 +70,6 @@ public class LogInDAO {
 		} finally {
 			close();
 		}
-
 		return result;
 	}
 

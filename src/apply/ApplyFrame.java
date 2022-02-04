@@ -38,8 +38,8 @@ public class ApplyFrame extends JFrame implements ActionListener {
    JLabel LabelMyList = new JLabel("my 알바리스트");
    JLabel Labelmonth = new JLabel("월");
    JLabel LabelList = new JLabel("신청목록");
-   JLabel LabelPay = new JLabel("my 알바비 <2022년 1월>"); // 나중에 달력 월 수에 맞게 바꿀 예정
-   JLabel Labelmonths = new JLabel("2022년 1월");
+   JLabel LabelPay = new JLabel("my 알바비 <2022년 2월>"); // 나중에 달력 월 수에 맞게 바꿀 예정
+   JLabel Labelmonths = new JLabel("2022년 2월");
    RoundedLabel labelStatus = null;
    JLabel labelJob = null;
    Font font = new Font("맑음고딕", Font.BOLD, 20);
@@ -69,7 +69,7 @@ public class ApplyFrame extends JFrame implements ActionListener {
    
    public ApplyFrame(String id) {
       setTitle("일일 알바 관리 프로그램");
-      setSize(800, 500);
+      setSize(800, 700);
       setLocationRelativeTo(null);
       init();
       start();
@@ -135,6 +135,7 @@ public class ApplyFrame extends JFrame implements ActionListener {
       }
          
       // 날짜 출력
+      
       infinityCalender.calSet();
       
       setLabelJob();
@@ -223,13 +224,9 @@ public class ApplyFrame extends JFrame implements ActionListener {
                      GridBagConstraints.CENTER, GridBagConstraints.NONE,
                      new Insets(5, 5, 5, 5),
                      0, 0));
-               
             }
          }
-         
       }
-      
-      
    }
    
    public String setLabelStatus(String date) {
@@ -243,25 +240,23 @@ public class ApplyFrame extends JFrame implements ActionListener {
                str = "승인완료";
                break;
             } else {
-               str = "신청자 " + Integer.toString(applyList.size()) + "명";
+               str = "신청 " + Integer.toString(applyList.size()) + "명";
             }
          }
-      } else {         
-         
+      } else {   
       }
-      
       return str;
    }
    
    @Override
    public void actionPerformed(ActionEvent e) {
-      int hour = 3;
-      String address = "서울";
-      String phone = "01012345678";
+	   AdminDTO ad = new AdminDTO();
+	   AdminDAO at = new AdminDAO();
+      int hour = ad.getTime2() - ad.getTime2();
       int applyStatus = 1;
       int approveStatus = 1;
       ApplyDAO dao = new ApplyDAO();
-      ApplyDTO dto = new ApplyDTO(hour, address, phone, applyStatus, approveStatus);
+      ApplyDTO dto = new ApplyDTO(hour, applyStatus, approveStatus);;
       if (e.getSource() == ButtonNext) {
          infinityCalender.allinit(1);
          LabelPay.setText("my 알바비 <" + infinityCalender.getCalText2() + infinityCalender.getCalText() + ">");
@@ -270,27 +265,30 @@ public class ApplyFrame extends JFrame implements ActionListener {
          for (int i = 0; i < buttons.length; i++) {
             buttons[i].setBackground(Color.WHITE);
          }
+         setLabelJob();
       } else if (e.getSource() == ButtonLast) {
          infinityCalender.allinit(-1);
          LabelPay.setText("my 알바비 <" + infinityCalender.getCalText2() + infinityCalender.getCalText() + ">");
          Labelmonths.remove(Labelmonths);
          Labelmonths.setText(infinityCalender.getCalText2() + infinityCalender.getCalText());
+         setLabelJob();
       } else
          for (int i = 0; i < buttons.length; i++) {
             if (e.getSource() == buttons[i]) {
                buttons[i].setBackground(Color.GREEN); // buttons[i]에 색상 지정
                String day = infinityCalender.getCalText2() + infinityCalender.getCalText() + buttons[i].getText()
                      + "일"; // day변수에 날짜 저장
-               int result = popup.showConfirmDialog(null, "a", day + "아르바이트 상세 내용", JOptionPane.YES_NO_OPTION); // result 변수에 yes 클릭시 0저장, no클릭시 1저장
+               int result = popup.showConfirmDialog(null, "상세 내용 : " + dao.detail(buttons[i].getText()), day + "아르바이트 상세 내용", JOptionPane.YES_NO_OPTION); // result 변수에 yes 클릭시 0저장, no클릭시 1저장
                detail.add(day); // detail 배열에 day값 저장
+               System.out.println("아이디 : " + dto.getId());
                if (result == 0) {
                   for (int j = 0; j < detail.size(); j++) {
                      dto.setDate(day);
                      dao.insert(dto);
-                     textAreaList.setText(detail.get(j).toString() + "a" + "\n"); // textAreaList에 detail 배열값 출력
+                     textAreaList.setText(detail.get(j).toString() + "\t" +dao.detail(buttons[i].getText()) + "\n"); // textAreaList에 detail 배열값 출력
                      textAreaList.append("---------------------" + "\n");
                      for (int a = 0; a < j; a++) {
-                        textAreaList.append(detail.get(a).toString() + "a" + "\n"); // textAreaList에 다음 detail  배열값 출력
+                        textAreaList.append(detail.get(a).toString() + "\t" +dao.detail(buttons[i].getText()) + "\n"); // textAreaList에 다음 detail  배열값 출력
                      }
                   }
                } else {
@@ -299,11 +297,6 @@ public class ApplyFrame extends JFrame implements ActionListener {
                }
             }
          }
-   
-   
-   
-   
-   
    }
 
 
@@ -379,11 +372,6 @@ public class ApplyFrame extends JFrame implements ActionListener {
          super.paintComponent(g);
       }
    }
-
-   
-      
-
-   
 
 //      } else if(e.getSource() == comboBox) {
 //      LabelPay.remove(LabelPay);

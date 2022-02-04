@@ -7,7 +7,7 @@ public class ApplyDTO {
 	private String time;
 	private String loc;
 	private String job;
-	private String datails;
+	private String details;
 	private String wage;
 	private String payday;
 	private int hour;
@@ -34,18 +34,24 @@ public class ApplyDTO {
 		this.approveStatus = approveStatus;
 	}
 
-	public ApplyDTO(int hour, String address, String phone, int applyStatus, int approveStatus) {
+	public ApplyDTO(int hour, int applyStatus, int approveStatus) {
 		super();
 		this.hour = hour;
-		this.address = address;
-		this.phone = phone;
+		this.applyStatus = applyStatus;
+		this.approveStatus = approveStatus;
+	}
+
+	public ApplyDTO(String id, String date, int applyStatus, int approveStatus) {
+		super();
+		this.id = id;
+		this.date = date;
 		this.applyStatus = applyStatus;
 		this.approveStatus = approveStatus;
 	}
 
 	@Override
 	public String toString() {
-		String str = "일한 시간" +  hour + "\n신청여부" + applyStatus + "\n승인여부" + approveStatus;
+		String str = details + wage + payday;
 		return str;
 	}
 
@@ -97,12 +103,12 @@ public class ApplyDTO {
 		this.job = job;
 	}
 
-	public String getDatails() {
-		return datails;
+	public String getDetails() {
+		return details;
 	}
 
-	public void setDatails(String datails) {
-		this.datails = datails;
+	public void setDatails(String details) {
+		this.details = details;
 	}
 
 	public String getWage() {
@@ -160,7 +166,4 @@ public class ApplyDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	
-	
 }

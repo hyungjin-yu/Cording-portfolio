@@ -180,7 +180,9 @@ public class LogInFrame extends JFrame implements ActionListener {
 			password = tpw.getText();
 			boolean check = logindao.LoginCheckApply(id, password);
 			if (check == true) {
-				ApplyDTO apply = new ApplyDTO(id);
+				ApplyDTO apply = new ApplyDTO();
+				apply.setId(id);
+				System.out.println(apply.getId());
 				Applymain am = new Applymain();
 				am.main(null);
 				this.dispose();

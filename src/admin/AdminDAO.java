@@ -241,7 +241,6 @@ public class AdminDAO implements Admin {
 				
 				ApplyDTO dto = new ApplyDTO(date, name, id, address, phone, applyStatus, approveStatus);
 				list.add(dto);
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

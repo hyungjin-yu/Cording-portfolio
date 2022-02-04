@@ -209,7 +209,7 @@ public class AdminFrame extends JFrame implements ActionListener {
 					str = "승인완료";
 					break;
 				} else {
-					str = "신청자 " + Integer.toString(applyList.size()) + "명";
+					str = "신청 " + Integer.toString(applyList.size()) + "명";
 				}
 			}
 		} else {			
