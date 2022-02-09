@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// NaN : Not a Number의 약자
+	var a = Number("a");
+	document.write("a = " + a + "<br><hr>");
+	
+	// isNaN() : 문자열이 숫자로만 구성되었는지 검사하는 함수
+	// => 숫자 : false
+	// => 숫자가 아닌 경우 : true
+	// => 입력 검사를 할 때 사용함
+	var str1 = "가나다라";
+	var str2 = "12345";
+	
+	var r1 = !isNaN(str1);
+	var r2 = !isNaN(str2);
+	
+	document.write(r1 + ", " + r2 + "<br><hr>");
+	
+	function plus() {
+		var x = document.getElementById("x").value;	// id를 통해서 값을 읽어옴
+		var y = document.getElementById("y").value;
+		
+		// 입력 검사
+		if(!isNaN(x) && !isNaN(y)) {
+			x = Number(x);
+			y = Number(y);
+			document.write(x + " + " + y + " = " + (x + y));
+		} else {
+			document.write("숫자를 입력하세요.");
+		}
+	}
+
+</script>
+</head>
+<body>
+	 x : <input type="text" id="x"><br>
+	 y : <input type="text" id="y"><br>
+	 <input type="button" value="더하기" onclick="plus()">
+</body>
+</html>
