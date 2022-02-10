@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function doSubmit() {
+		// 폼 객체 얻어오기
+		// => form 객체 : <form> 태그를 관리하는 객체
+		var frm = document.form1;
+
+		if(!frm.user_name.value) {
+			alert("이름을 입력해주세요.");
+			frm.user_name.focus();		// 커서를 입력 태그에 집어 넣음
+			return false;		//강제 종료
+		}
+		
+		// 라디오 버튼 입력 검사
+		if(!frm.gender[0].checked && !frm.gender[1].checked) {
+			alert("성별을 선택해주세요");
+			return false;
+		}
+		
+		// select 요소에 대한 선택위치 검사
+		if(frm.job.selectedIndex < 1) {
+			alert("직업을 선택해주세요");
+			frm.job.focus();
+			return false;
+		}
+		
+		// checkbox의 선택여부 검사
+		var chk = false;
+		for(var i = 0; i<frm.hobby.length; i++) {
+			if(frm.hobby[i].checked) {
+				chk = true;	// 체크된 체크박스가 존재함
+				break;
+			}
+		}
+		
+		if(!chk) {
+			alert("취미를 선택하세요.");
+			return false;
+		}
+		
+		// 입력 확인
+		if(confirm("입력하신 내용이 맞습니까?")) {
+			frm.submit();	// 서버에 <form> 태그의 입력데이터 전송
+		}
+	}
+</script>
+</head>
+<body>
+	<!-- return false : submit 동작을 무효화시킴 -->
+	<form action="" name="form1" onsubmit="doSubmit(); return false;">
+		<fieldset>
+			<legend>회원가입</legend>
+			<label>이름</label>
+			<input type="text" name="user_name"><br>
+			
+			<label>성별</label>
+			<input type="radio" name="gender" value="M">남자
+			<input type="radio" name="gender" value="F">여자<br>
+			
+			<label>직업</label>
+			<select name="job">
+				<option>--선택하세요--</option>
+				<option value="dev">프로그래머</option>
+				<option value="pub">퍼블리셔</option>
+			</select><br>
+			
+			<label>취미</label>
+			<input type="checkbox" name="hobby" value="축구">축구
+			<input type="checkbox" name="hobby" value="농구">농구
+			<input type="checkbox" name="hobby" value="야구">야구<br>
+			
+			<input type="submit" value="제출">
+			<input type="reset" value="리셋">
+		</fieldset>
+	</form>
+</body>
+</html>
