@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/7.Servlet/PersonServlet">
+		<table border="1">
+			<tr align="left">
+				<td>이름</td>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr align="left">
+				<td>성별</td>
+				<td>
+					<input type="radio" name="gender" value="M">남
+					<input type="radio" name="gender" value="F">여
+				</td>
+			</tr>
+			<tr align="left">
+				<td>취미</td>
+				<td>
+					<input type="checkbox" name="hobby" value="독서">독서
+					<input type="checkbox" name="hobby" value="영화">영화
+					<input type="checkbox" name="hobby" value="음악">음악
+					<input type="checkbox" name="hobby" value="게임">게임
+					<input type="checkbox" name="hobby" value="쇼핑">쇼핑
+				</td>
+			</tr>
+			<tr align="left">
+				<td>색깔</td>
+				<td>
+					<select name="color">
+						<option>--선택하세요--</option>
+						<option value="red">빨강</option>
+						<option value="blue">파랑</option>
+						<option value="yellow">노랑</option>
+					</select>
+				</td>
+			</tr>
+			<tr align="left">
+				<td>과목</td>
+				<td>
+					<select name="subject" multiple="multiple">
+						<option value="JAVA">JAVA</option>
+						<option value="JSP">JSP</option>
+						<option value="Spring">Spring</option>
+						<option value="jQuery">jQuery</option>
+						<option value="Servlet">Servlet</option>
+					</select>
+				</td>
+			</tr>
+			<tr align="center">
+				<td>
+					<input type="submit" name="보내기" value="SEND">
+					<input type="submit" name="취소" value="CANCEL">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
