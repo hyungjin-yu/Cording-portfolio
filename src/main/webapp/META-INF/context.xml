@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- 커낵션 풀 설정 -->
+	<Resource 
+		name="jdbc/oracle"
+		type="javax.sql.DataSource"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="C##dbexam"
+		password="m1234"
+		maxActive="20"
+		maxIdle="3"
+		removeAbandoned="true"
+	/>
+</Context>
