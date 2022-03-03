@@ -19,17 +19,19 @@ public class BoardWriteProAction implements Action{
 		String realFolder = request.getServletContext().getRealPath("boardUpload");
 		MultipartRequest multi = new MultipartRequest(request, realFolder, 5*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 		BoardBean boardbean = new BoardBean();
+		
+		//System.out.println("이름 : " + multi.getParameter("board_name"));
+		//System.out.println("비밀번호 : " + multi.getParameter("board_pass") );
+		//System.out.println("제목 : " + multi.getParameter("board_subject") );
+		//System.out.println("내용 : " + multi.getParameter("board_content") );
+		//System.out.println("파일명 : " +  multi.getOriginalFileName("board_file"));
+		
 		boardbean.setBoard_name(multi.getParameter("board_name"));
 		boardbean.setBoard_pass(multi.getParameter("board_pass"));
 		boardbean.setBoard_subject(multi.getParameter("board_subject"));
 		boardbean.setBoard_content(multi.getParameter("board_content"));
 		boardbean.setBoard_file(multi.getOriginalFileName("board_file"));
-		
-		System.out.println("이름 : " + boardbean.getBoard_name());
-		System.out.println("비밀번호 : " + boardbean.getBoard_pass() );
-		System.out.println("제목 : " + boardbean.getBoard_subject() );
-		System.out.println("내용 : " + boardbean.getBoard_content() );
-		System.out.println("파일명 : " +  boardbean.getBoard_file());
+
 		
 		// DB
 		BoardDAO dao = new BoardDAO();

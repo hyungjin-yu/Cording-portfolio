@@ -21,8 +21,13 @@ body {
 </style>
 </head>
 <body>
-	<form action="boardWritePro.do" method="post" enctype="multipart/form-data"> 
-		<h2 align="center">게시판 등록</h2>
+	<form action="boardReplyPro.do" method="post"> 
+	<input type="hidden" name="pg"  value="${pg}">
+	<input type="hidden" name="board_num" value="${boardBean.board_num}">
+	<input type="hidden" name="board_re_ref" value="${boardBean.board_re_ref}">
+	<input type="hidden" name="board_re_lev"  value="${boardBean.board_re_lev}">
+	<input type="hidden" name="board_re_seq"  value="${boardBean.board_re_seq}">
+		<h2 align="center">답글 등록</h2>
 			<table>
 				<tr>
 					<td class="sub">글쓴이</td>
@@ -41,12 +46,8 @@ body {
 					<td class="content"><textarea rows=15" cols="40"  name="board_content"></textarea></td>
 				</tr>
 				<tr>
-					<td class="sub">파일 첨부</td>
-					<td class="content"><input type="file" value="찾아보기..."  name="board_file"></td>
-				</tr>
-				<tr>
 					<td colspan="2" align="center">
-					<input type="submit" value="등록">
+					<input type="submit" value="답변글 등록">
 					<input type="reset" value="다시 쓰기">
 					</td>
 				</tr>

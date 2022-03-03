@@ -11,7 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.action.Action;
+import board.action.BoardDeleteProAction;
+import board.action.BoardDetailAction;
 import board.action.BoardListAction;
+import board.action.BoardModifyFormAction;
+import board.action.BoardModifyProAction;
+import board.action.BoardReplyFormAction;
+import board.action.BoardReplyProAction;
 import board.action.BoardWriteProAction;
 
 @WebServlet("*.do")
@@ -35,8 +41,8 @@ public class BoardController extends HttpServlet {
 		
 		// 1. 요청 정보 확인
 		String command = request.getServletPath();
+		System.out.println("command = " + command);
 		// "boardWriteForm.do"
-		// System.out.println("command = " + command);
 		
 		// 2. 요청 작업 처리 클래스 선택
 		String forward = null;
@@ -47,7 +53,22 @@ public class BoardController extends HttpServlet {
 			action = new BoardWriteProAction();
 		} else if(command.equals("/boardList.do")) {
 			action = new BoardListAction();
+		} else if(command.equals("/boardDetail.do")) {
+			action = new BoardDetailAction();
+		} else if(command.equals("/boardDeleteForm.do")) {
+			forward = "/board/board_delete.jsp";
+		} else if(command.equals("/boardDeletePro.do")) {
+			action = new BoardDeleteProAction();
+		} else if(command.equals("/boardModify.do")) {
+			action = new BoardModifyFormAction();
+		} else if(command.equals("/boardModifyPro.do")) {
+			action = new BoardModifyProAction();
+		} else if(command.equals("/boardReplyForm.do")) {
+			action = new BoardReplyFormAction();
+		} else if(command.equals("/boardReplyPro.do")) {
+			action = new BoardReplyProAction();
 		}
+		
 		
 		// 3. 요청 작업 처리
 		if(action != null) {
@@ -64,4 +85,5 @@ public class BoardController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 	}
+	
 }

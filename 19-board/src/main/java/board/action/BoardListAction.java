@@ -31,6 +31,7 @@ public class BoardListAction implements Action{
 		int totalA = dao.getTotalA();	// 총 글 수 
 	    int totalP = (totalA + 9) / 10;	// 총 페이지 수
 	    
+	    // 블럭 5개
 	    int startPage = (pg-1)/5*5 + 1;
 		int endPage = startPage + 4;	// 페이지 번호를 5개씩 한다면 +4
 		// endPage 값 보정
