@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="fileOutput" class="sample6.FileOutput">
+		<property name="filePath" value="data.txt"></property>
+	</bean>
+	
+	<bean id="messageBean" class="sample6.MessageBeanImpl">
+		<constructor-arg value="홍길동" />
+		<property name="phone" value="010-1234-5678" />
+		<property name="outputter" ref="fileOutput" />
+	</bean>
+</beans>
