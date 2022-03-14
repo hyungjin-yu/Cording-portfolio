@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean 객체 설정 -->
+	<bean id="woman" class="aop02.Woman"/>
+	<bean id="man" class="aop02.Man"/>
+	
+	<!-- advice : 횡단 관심 사항 -->
+	<bean id="myAdvice" class="aop02.MyAspect"/>
+	
+	<!-- advisor = advice + pointcut -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+	
+	<bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<!-- 공통관심사항 객체 등록 -->
+		<property name="advice" ref="myAdvice" />
+		<!-- 핵심관심사항 함수 등록 
+			 advice 객체와 같은 패키지의 public이면서 리턴타입은 아무타입, 메소드명도 아무거나-->
+		<property name="expression" value="execution(public * * (..))" />
+	</bean>
+</beans>
