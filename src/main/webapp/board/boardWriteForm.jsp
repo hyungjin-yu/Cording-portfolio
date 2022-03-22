@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="boardWrite.jsp" method="post" name="boardWriteForm" onsubmit="checkBoardWrite(); return false;">
+	<form action="boardWrite.do" method="post" name="boardWriteForm">
 	
 		<table border="1">
 			<tr>
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="글쓰기">
+					<input type="button" value="글쓰기" onclick="checkBoardWrite()">
 					<input type="reset" value="다시 작성">
 					<input type="button" value="취소" onclick="history.back()">
 				</td>

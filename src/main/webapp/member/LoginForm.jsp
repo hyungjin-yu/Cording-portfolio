@@ -21,7 +21,7 @@ function login() {
 </script>
 </head>
 <body>
-	<form action="login.jsp" method="post" name="form" onsubmit="login(); return false;">
+	<form action="login.do" method="post" name="form" onsubmit="login(); return false;">
 	<table border="1">
 		<tr align="center">
 			<td><label>아이디</label></td>
