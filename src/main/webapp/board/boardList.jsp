@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,13 +29,13 @@
 			</tr>
 			
 			<c:forEach var="dto" items="${list}">
-			<tr>
-				<td>${dto.seq}</td>
-				<td><a href="#" onclick="isLogin(${dto.seq})">${dto.subject}</a></td>
-				<td>${dto.name}</td>
-				<td>${dto.logtime}</td>
-				<td>${dto.hit}</td>
-			</tr>
+				<tr>
+					<td>${dto.seq}</td>
+					<td><a href="#" onclick="isLogin(${dto.seq})">${dto.subject}</a></td>
+					<td>${dto.name}</td>
+					<td>${dto.logtime}</td>
+					<td>${dto.hit}</td>
+				</tr>
 			</c:forEach>
 		</table>
 	
@@ -52,7 +52,6 @@
 				[<a class="paging" href="boardList.do?pg=${i}">${i}</a>]
 			</c:if>
 		</c:forEach>
-
 		<c:if test="${endPage < totalP}">
 			[<a class="paging" href="boardList.do?pg=${endPage+1}">다음</a>]
 		</c:if>

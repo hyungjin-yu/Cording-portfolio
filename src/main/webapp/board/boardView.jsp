@@ -1,8 +1,6 @@
-<%@page import="board.bean.BoardDTO"%>
-<%@page import="board.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +26,9 @@
 		</tr>
 	</table>
 	<input type="button" value="목록" onclick="location.href='boardList.do?pg=${pg}'">
-	<c:if test="${memId == dto.id }">
+	<c:if test="${memId == dto.id}">
 		<input type="button" value="수정">
-		<input type="button" value="삭제" onclick="location.href='boardDelete.do?pg=${pg}&seq=${seq}'">
+		<input type="button" value="삭제" onclick="location.href='boardDelete.do?pg=${pg}&seq=${dto.seq}'">
 	</c:if>
 </body>
 </html>

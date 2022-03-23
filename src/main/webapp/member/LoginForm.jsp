@@ -39,5 +39,6 @@ function login() {
 		</tr>
 	</table>
 	</form>
+	<a href="boardWriteForm.do">새글쓰기</a>
 </body>
 </html>

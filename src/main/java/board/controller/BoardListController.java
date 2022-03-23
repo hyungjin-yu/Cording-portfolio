@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 import board.bean.BoardDTO;
 import board.dao.BoardDAO;
@@ -12,8 +14,8 @@ import board.dao.BoardDAO;
 public class BoardListController implements Controller{
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		// 1. 데이터 처리
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 1. 데이터 처리 코드
 		int pg = 1;
 		if(request.getParameter("pg") != null)
 		pg = Integer.parseInt(request.getParameter("pg"));
@@ -32,14 +34,17 @@ public class BoardListController implements Controller{
 		
 		if(endPage > totalP) endPage = totalP;
 		
-		// 2. 화면 네비게이션
-		request.setAttribute("pg", pg);
-		request.setAttribute("list", list);
-		request.setAttribute("totalP", totalP);
-		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);
-		
-		return "boardList";		// boardList.jsp도 가능
+		// 화면 네비게이션
+		ModelAndView modelAndView = new ModelAndView();
+		// 공유 데이터 저장
+		modelAndView.addObject("pg",pg);
+		modelAndView.addObject("list",list);
+		modelAndView.addObject("totalP",totalP);
+		modelAndView.addObject("startPage",startPage);
+		modelAndView.addObject("endPage",endPage);
+		// view 처리 파일명 저장
+		modelAndView.setViewName("boardList.jsp");
+		return modelAndView;
 	}
 
 }

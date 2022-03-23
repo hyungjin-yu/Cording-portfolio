@@ -1,10 +1,11 @@
 package board.controller;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
 import board.bean.BoardDTO;
 import board.dao.BoardDAO;
@@ -12,14 +13,10 @@ import board.dao.BoardDAO;
 public class BoardWriteController implements Controller{
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			request.setCharacterEncoding("utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		
+
 		String id = (String)session.getAttribute("memId");
 		String name = (String)session.getAttribute("memName");
 		String subject = request.getParameter("subject");
@@ -34,11 +31,14 @@ public class BoardWriteController implements Controller{
 		dto.setContent(content);
 		
 		BoardDAO dao = new BoardDAO();
-		int result = dao.boardWrite(dto); 
+		int result = dao.boardWrite(dto);
 		
 		// 화면 네비게이션
-		request.setAttribute("result", result);
-		return "boardWrite";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("result", result);
+		
+		modelAndView.setViewName("boardWrite.jsp");
+		return modelAndView;
 	}
 
 }

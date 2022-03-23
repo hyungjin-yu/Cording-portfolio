@@ -15,14 +15,40 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<!-- 1. ViewResolver 주석 처리 -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+<!-- viewResolver는 주석처리해야함
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+-->
 	
-	<context:component-scan base-package="com.exam.step12" />
+	<context:component-scan base-package="com.exam.step14" />
 	
+	<!-- 2. script 폴더 등록 -->
 	<resources location="/script/" mapping="/script/**"/>
+	
+	<!-- 3. Controller 클래스 등록 -->
+	<beans:bean id="loginController" class="board.controller.LoginController"/>
+	<beans:bean id="boardListController" class="board.controller.BoardListController"/>
+	<beans:bean id="boardViewControlle" class="board.controller.BoardViewController"/>
+	<beans:bean id="boardDeleteController" class="board.controller.BoardDeleteController"/>
+	<beans:bean id="boardWriteController" class="board.controller.BoardWriteController"/>
+	<beans:bean id="boardWriteFormController" class="board.controller.BoardWriteFormController"/>
+	
+	<!-- 4. HandlerMapping 등록 -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name="mappings">
+			<beans:props>
+				<beans:prop key="/member/login.do" >loginController</beans:prop>
+				<beans:prop key="/board/boardList.do" >boardListController</beans:prop>
+				<beans:prop key="/board/boardView.do" >boardViewControlle</beans:prop>
+				<beans:prop key="/board/boardDelete.do" >boardDeleteController</beans:prop>
+				<beans:prop key="/board/boardWrite.do" >boardWriteController</beans:prop>
+				<beans:prop key="/board/boardWriteForm.do" >boardWriteFormController</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
 	
 </beans:beans>

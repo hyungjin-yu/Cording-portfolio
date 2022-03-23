@@ -4,13 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import board.bean.BoardDTO;
 import board.dao.BoardDAO;
 
 public class BoardViewController implements Controller{
 
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));	
 		HttpSession session = request.getSession();
@@ -25,10 +28,13 @@ public class BoardViewController implements Controller{
 		String content = (String) session.getAttribute("content");
 		
 		// 화면 네비게이션
-		request.setAttribute("seq", seq);
-		request.setAttribute("pg", pg);
-		request.setAttribute("dto", dto);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("seq", seq);
+		modelAndView.addObject("pg", pg);
+		modelAndView.addObject("dto", dto);
 		
-		return "boardView";
+		modelAndView.setViewName("boardView.jsp");
+		return modelAndView;
 	}
+
 }
