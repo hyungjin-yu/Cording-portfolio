@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.exam.step14">
+	<logger name="com.exam.step16">
 		<level value="info" />
 	</logger>
 	

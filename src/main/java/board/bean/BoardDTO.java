@@ -9,8 +9,6 @@ public class BoardDTO {
 	private int hit; // 조회수
 	private String logtime;
 	
-	
-
 	public int getSeq() {
 		return seq;
 	}
@@ -66,5 +64,4 @@ public class BoardDTO {
 	public void setLogtime(String logtime) {
 		this.logtime = logtime;
 	}
-
 }
