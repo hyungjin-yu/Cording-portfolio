@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +16,10 @@ import board.dao.BoardDAO;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	BoardService boardService;
+	
 	@RequestMapping(value="/board/boardDelete.do")
 	public ModelAndView boardDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -23,8 +28,8 @@ public class BoardController {
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		// db
-		BoardDAO dao = new BoardDAO();
-		int result = dao.boardDelete(seq);
+		//BoardDAO dao = new BoardDAO();
+		int result = boardService.boardDelete(seq);
 		
 		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
@@ -46,10 +51,10 @@ public class BoardController {
 		int endNum = pg * 5;
 		int startNum = endNum - 4;
 		
-		BoardDAO dao = new BoardDAO();
-		List<BoardDTO> list = dao.boardList(startNum, endNum);
+		//BoardDAO dao = new BoardDAO();
+		List<BoardDTO> list = boardService.boardList(startNum, endNum);
 		
-		int totalA = dao.getTotalA();
+		int totalA = boardService.getTotalA();
 		int totalP = (totalA + 4) / 5;
 		
 		int startPage = (pg-1) / 3*3 + 1;
@@ -96,8 +101,8 @@ public class BoardController {
 		dto.setSubject(subject);
 		dto.setContent(content);
 		
-		BoardDAO dao = new BoardDAO();
-		int result = dao.boardWrite(dto);
+		//BoardDAO dao = new BoardDAO();
+		int result = boardService.boardWrite(dto);
 		
 		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
@@ -112,10 +117,11 @@ public class BoardController {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));	
 		HttpSession session = request.getSession();
-		BoardDAO dao = new BoardDAO();
-		BoardDTO dto = dao.boardView(seq);
+		//BoardDAO dao = new BoardDAO();
+		BoardDTO dto = boardService.boardView(seq);
+		
 		// 조회수 증가
-		dao.updateHit(seq);
+		boardService.updateHit(seq);
 		
 		String id = (String) session.getAttribute("id");
 		String subject = (String) session.getAttribute("subject");
