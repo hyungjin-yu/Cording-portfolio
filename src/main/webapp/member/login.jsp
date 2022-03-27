@@ -1,25 +1,6 @@
-<%@page import="member.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-	
-	String id = request.getParameter("id");
-	String pwd = request.getParameter("pwd");
-	
-	//DB
-	MemberDAO dao = new MemberDAO();
-	String name = dao.login(id, pwd);
-	
-	if(name != null) {
-		session.setAttribute("memName", name);
-		session.setAttribute("memId", id);
-		
-		response.sendRedirect("../board/boardList.jsp");
-	} else {
-		response.sendRedirect("LoginForm.jsp");
-	}
-%>
+    pageEncoding="UTF-8"%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<c:if test="${name == null }">
+		<p> 아이디 또는 비밀번호가 틀렸습니다.</p>
+	</c:if>
+	<c:if test="${name != null }">
+		<p><%=name %>님이 로그인했습니다.</p>
+	</c:if>
 </body>
 </html>

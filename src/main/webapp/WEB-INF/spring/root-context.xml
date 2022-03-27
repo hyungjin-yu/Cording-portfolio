@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+		
 	<!-- DataSource 설정 : 커넥션 풀 설정-->
 	<!-- db.properties 파일 경로 설정 -->
 	<context:property-placeholder location="classpath:mybatis/db.properties"/>
@@ -28,5 +28,4 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sessionFactory"/>
 	</bean>
-	
 </beans>

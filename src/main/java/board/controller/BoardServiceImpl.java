@@ -9,19 +9,19 @@ import board.bean.BoardDTO;
 import board.dao.BoardDAO;
 
 @Service
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardDAO dao;
 	
 	@Override
-	public List<BoardDTO> boardList(int startNum, int endNum) {
-		return dao.boardList(startNum, endNum);
+	public int boardWrite(BoardDTO dto) {
+		return dao.boardWrite(dto);
 	}
 
 	@Override
-	public int getTotalA() {
-		return dao.getTotalA();
+	public List<BoardDTO> boardList(int startNum, int endNum) {
+		return dao.boardList(startNum, endNum);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int boardWrite(BoardDTO dto) {
-		return dao.boardWrite(dto);
+	public int updateHit(int seq) {
+		return dao.updateHit(seq);
 	}
 
 	@Override
@@ -40,8 +40,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int updateHit(int seq) {
-		return dao.updateHit(seq);
+	public int getTotalA() {
+		return dao.getTotalA();
+	}
+
+	@Override
+	public int boardModify(BoardDTO dto) {
+		return dao.boardModify(dto);
 	}
 
 }

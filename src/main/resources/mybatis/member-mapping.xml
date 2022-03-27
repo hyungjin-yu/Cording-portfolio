@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.memberMapper">
+
+	<!-- 목록보기 --> 
+	<select id="selectList" parameterType="java.util.Map" resultType="dto">
+		<![CDATA[
+		SELECT * from (SELECT ROWNUM rn, tt.* FROM 
+		(SELECT * FROM MEMBER ORDER BY name asc, id asc) tt) 
+		WHERE rn>=#{startNum} AND rn<=#{endNum}
+		]]>
+	</select>
+	
+	<!-- 총 인원 수 구하기 --> 
+	<select id="getTotalMember" resultType="int">
+		select count(*) as cnt from member
+	</select>
+	
+	<!-- 로그인 --> 
+	<select id="login" parameterType="java.util.Map" resultType="dto">
+		select * from member where id=#{id} and pwd=#{pwd}
+	</select>
+	
+	<!-- 데이터 저장 --> 
+	<select id="boardWrite" parameterType="dto">
+		insert into member values (#{name},#{id},#{pwd},#{gender},#{email1},#{email2},#{tel1},#{tel2},#{tel3},#{addr}, sysdate)
+	</select>
+	
+	<!-- 회원탈퇴 --> 
+	<select id="delete" parameterType="string">
+		delete board where id=#{id}
+	</select>
+	
+	<!-- 데이터 수정 --> 
+	<select id="modify" parameterType="int">
+		update member set pwd=#{pwd}, email1=#{email1}, email2=#{email2},
+		 "tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3}, addr=#{addr} where id=#{id}
+	</select>
+	
+	<!-- 회원 1명 데이터 읽어오기 --> 
+	<select id="getMember" resultType="string">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- id가 있는지 검사 -->
+	<select id="isExistId" resultType="boolean">
+		select * from member where id=#{id}
+	</select>
+</mapper>

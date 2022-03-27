@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.exam.step18">
+	<logger name="com.exam.Springboard">
 		<level value="info" />
 	</logger>
 	

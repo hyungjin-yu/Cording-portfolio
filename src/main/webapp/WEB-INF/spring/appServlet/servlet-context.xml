@@ -22,8 +22,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	 -->
-	
-	<context:component-scan base-package="com.exam.step18" />
+	 
+	<context:component-scan base-package="com.exam.Springboard" />
 	
 	<!-- Script 폴더 등록 -->
 	<resources location="/script/" mapping="/script/**"/>
@@ -31,5 +31,7 @@
 	<!-- 어노테이션 설정 -->
 	<context:component-scan base-package="board.dao"/>
 	<context:component-scan base-package="board.controller" />
+	<context:component-scan base-package="member.dao"/>
+	<context:component-scan base-package="member.controller" />
 	
 </beans:beans>

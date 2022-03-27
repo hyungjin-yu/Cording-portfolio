@@ -1,14 +1,15 @@
 package board.bean;
 
 public class BoardDTO {
-	private int seq; // 글 번호
-	private String id; // 아이디
-	private String name; // 이름
+	private int seq; 		// 글번호
+	private String id; 		// 아이디
+	private String name; 	// 이름
 	private String subject; // 제목
 	private String content; // 내용
-	private int hit; // 조회수
-	private String logtime;
-	
+	private int hit; 		// 조회수
+	private String logtime; // 작성일
+
+	// getter / setter
 	public int getSeq() {
 		return seq;
 	}

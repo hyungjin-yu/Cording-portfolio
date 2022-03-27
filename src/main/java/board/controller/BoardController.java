@@ -22,119 +22,129 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/boardDelete.do")
 	public ModelAndView boardDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		// 데이터
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
-		
 		// db
-		//BoardDAO dao = new BoardDAO();
-		int result = boardService.boardDelete(seq);
+		BoardDAO dao = new BoardDAO();
+		int flag = dao.boardDelete(seq);
 		
-		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("result", result);
-		modelAndView.addObject("seq", seq);
-		modelAndView.addObject("pg", pg);
-		
+		modelAndView.addObject("flag",flag);
+		modelAndView.addObject("seq",seq);
+		modelAndView.addObject("pg",pg);
 		modelAndView.setViewName("boardDelete.jsp");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/board/boardList.do")
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 1. 데이터 처리 코드
-		int pg = 1;
-		if(request.getParameter("pg") != null)
-		pg = Integer.parseInt(request.getParameter("pg"));
-		
-		int endNum = pg * 5;
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		// DB
+		/* 목록보기 */
+		int endNum = pg*5;
 		int startNum = endNum - 4;
 		
-		//BoardDAO dao = new BoardDAO();
-		List<BoardDTO> list = boardService.boardList(startNum, endNum);
+		// dao 작업
+		BoardDAO dao = new BoardDAO();
+	    List<BoardDTO> list = dao.boardList(startNum, endNum);
+	    
+	    int totalA = dao.getTotalA();   // 총글수 구하기
+	    int totalP = (totalA + 4) / 5;
+	    
+		int startPage = (pg-1)/3*3 + 1;
+	    int endPage = startPage + 2;
+	    
+	    // endPage 값 보정
+	    if(endPage > totalP) endPage = totalP;
 		
-		int totalA = boardService.getTotalA();
-		int totalP = (totalA + 4) / 5;
-		
-		int startPage = (pg-1) / 3*3 + 1;
-		int endPage = startPage + 2;
-		
-		if(endPage > totalP) endPage = totalP;
-		
-		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
-		// 공유 데이터 저장
 		modelAndView.addObject("pg",pg);
-		modelAndView.addObject("list",list);
+		modelAndView.addObject("endNum",endNum);
+		modelAndView.addObject("startNum",startNum);
 		modelAndView.addObject("totalP",totalP);
-		modelAndView.addObject("startPage",startPage);
-		modelAndView.addObject("endPage",endPage);
-		// view 처리 파일명 저장
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("boardList.jsp");
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/board/boardWriteForm.do")
-	public ModelAndView boardWriteForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 화면 네비게이션
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("boardWriteForm.jsp");
-		return modelAndView;
-	}
-	
-	@RequestMapping(value="/board/boardWrite.do")
-	public ModelAndView boardWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/board/boardModify.do")
+	public ModelAndView boardModify(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
 
-		String id = (String)session.getAttribute("memId");
-		String name = (String)session.getAttribute("memName");
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		
 		// DB처리
-		BoardDTO dto = new BoardDTO();  
-		
-		dto.setId(id);
-		dto.setName(name);
+		BoardDTO dto = new BoardDTO(); 	
+		dto.setSeq(seq);
 		dto.setSubject(subject);
 		dto.setContent(content);
 		
-		//BoardDAO dao = new BoardDAO();
-		int result = boardService.boardWrite(dto);
+		BoardDAO dao = new BoardDAO();
+		int result = dao.boardModify(dto);
 		
-		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", result);
-		
-		modelAndView.setViewName("boardWrite.jsp");
+		modelAndView.addObject("seq", seq);
+		modelAndView.addObject("pg", pg);
+		modelAndView.setViewName("boardModify.jsp");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/board/boardView.do")
 	public ModelAndView boardView(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		int pg = Integer.parseInt(request.getParameter("pg"));	
-		HttpSession session = request.getSession();
-		//BoardDAO dao = new BoardDAO();
-		BoardDTO dto = boardService.boardView(seq);
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		
-		// 조회수 증가
-		boardService.updateHit(seq);
+		// boardModifyForm.jsp에 보여줄 데이터 필요
+		BoardDAO dao = new BoardDAO();
+		BoardDTO dto = dao.boardView(seq);
 		
-		String id = (String) session.getAttribute("id");
-		String subject = (String) session.getAttribute("subject");
-		String name = (String) session.getAttribute("name");
-		String content = (String) session.getAttribute("content");
-		
-		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("dto", dto);
 		modelAndView.addObject("seq", seq);
 		modelAndView.addObject("pg", pg);
-		modelAndView.addObject("dto", dto);
-		
 		modelAndView.setViewName("boardView.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/board/boardWrite.do")
+	public ModelAndView boardWrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		// 세션에 저장된 데이터 받기
+		String name = (String)session.getAttribute("memName");
+		String id = (String)session.getAttribute("memId");
+
+		// DB 처리
+		BoardDTO dto = new BoardDTO();
+		dto.setId(id);
+		dto.setName(name);
+		dto.setSubject(subject);
+		dto.setContent(content);
+		   
+		BoardDAO dao = new BoardDAO();
+		int result = dao.boardWrite(dto);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("dto", dto);
+		modelAndView.setViewName("boardWrite.jsp");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/board/boardWriteForm.do")
+	public ModelAndView boardWriteForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		ModelAndView modelAndView = new ModelAndView();
+		
+		modelAndView.setViewName("boardWriteForm.jsp");
 		return modelAndView;
 	}
 }

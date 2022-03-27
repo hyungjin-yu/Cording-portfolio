@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>아이디 또는 비밀번호가 틀렸습니다. 다시 로그인 하세요.</p>
-	<a href="LoginForm.jsp">로그인</a>
+	<p>아이디 또는 비밀번호가 틀렸으니 다시 로그인 하세요.</p>
+	<a href="loginForm.do">로그인</a>
 </body>
 </html>

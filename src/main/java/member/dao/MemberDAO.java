@@ -5,67 +5,90 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import member.bean.MemberDTO;
+
+@Repository
 public class MemberDAO {
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String username = "C##dbexam";
-	String password = "m1234";
 	
-	Connection conn;
-	PreparedStatement pstmt;
-	ResultSet rs;
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 	
-	public MemberDAO() {
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+	// insert : 저장
+	public int write(MemberDTO dto) {
+		return sqlSession.insert("mybatis.memberMapper.memberList", dto);
 	}
 	
-	public Connection getConnection() {
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
-	
-	public void close() {
-		try {
-			if(rs != null)rs.close();
-			if(pstmt != null)pstmt.close();
-			if(conn != null)conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	// 로그인
+	// 로그인 
+	// select * from member where id='hong' and pwd='1234'
+	// => 결과값중에서 이름만 리턴함
 	public String login(String id, String pwd) {
-		String name = null;
-		String sql = "select * from member where id=? and pwd=?";
-		
-		conn = getConnection();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				name = rs.getString("name");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return name;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		return sqlSession.selectOne("mybatis.memberMapper.login", map);
 	}
 	
+	// id가 있는 지 검사
+	public boolean isExistId(String id) {
+		return sqlSession.selectOne("mybatis.memberMapper.isExistId", id);
+	}
 	
+	// 회원 1명의 데이터 읽어오기
+	public MemberDTO getMember(String id) {
+		return sqlSession.selectOne("mybatis.memberMapper.getMember", id);
+	}
+	
+	// 데이터 수정
+	public int modify(MemberDTO dto) {
+		return sqlSession.selectOne("mybatis.memberMapper.modify", dto);
+	} 
+	
+	// 5개씩 목록 데이터 구하기 
+	public List<MemberDTO> selectList(int startNum, int endNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		return sqlSession.selectList("mybatis.memberMapper.selectList", map);
+	}
+	
+	// 총인원수 구하기
+	public int getTotalMember() {
+		return sqlSession.selectOne("mybatis.memberMapper.getTotalMember");
+	}
+	
+	// 회원 탈퇴 => 삭제
+	public int delete(String id) {
+		return sqlSession.delete("mybatis.memberMapper.delete", id);
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
