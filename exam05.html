@@ -3,84 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-div#container {
-	width: auto;
-	border: 5px solid #ff00ff;
-	padding: 10px;
-}
-
-div#container>h1#title {
-	background-color: #d5d5d5;
-	padding: 10px;
-}
-
-div#container div.box {
-	padding: 10px;
-	background: #ffff00;
-	font: 20px '굴림체';
-}
-
-div#container>ul {
-	list-style: none;
-	padding: 10px;
-	margin: 0px;
-	width: auto;
-	border: 5px solid #00ff00;
-}
-
-ul>li:first-child, ul>li:last-child {
-	border: 3px dotted red;
-	padding: 3px 10px;
-}
-
-pre {
-	font: 14px/130% 'Courier New'; 
-	background: #eee;
-	padding: 10px; 20px;
-	margin: 10px; auto;
-	border: 1px solid #555;
-	border-radius: 20px;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/event.css">
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	// 브라우저가 모든 태그를 인식한 후, $()함수안의 함수를 호출
-	// => $()함수에 의해 호출된 함수안에서는 $객체 사용 가능
-	$(function() {
-		// 아이디
-		$("#title").html("두번째 제목");
-		// 자식 셀렉터
-		$("div#container > h1#title").html("제목입니다.");
-		// 자손 셀렉터
-		$("div#container div.box").html("안녕하세요");
-		// 두번째 li태그 선택, :eq(n) n은 0부터 
-		$("ul > li:eq(1)").html("jQuery 고유의 방식도 있습니다.");
-		// 복수 태그 선택
-		$("p, pre").html("다중요소 선택");
-		// 속성 사용
-		$("pre[name='source']").html("name 속성으로 선택");
-		// <li>태그의 첫번째와 마지막 선택
-		$("ul > li:first-child").html("First-child");
-		$("ul > li:last-child").html("Last-child");
+	$(function(){
+		var down_count = 0;
+		var up_count = 0;
+		
+		// 키가 눌러진 경우 혹은 누르고 있는 동안
+		$("#input > input[type='text']").keydown(function() {
+			down_count++;
+			var result = "down_count : " + down_count + " / up_count : " + up_count;
+			$("#result").html(result);
+		});
+		// 키가 떨어진 경우
+		$("#input > input[type='text']").keyup(function() {
+			up_count++;
+			var result = "down_count : " + down_count + " / up_count : " + up_count;
+			$("#result").html(result);
+		});
 	});
 </script>
 </head>
 <body>
-	<div id="container">
-		<h1 id="title"></h1>
-		<div class="box"></div>
-		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+	<h1>Key 이벤트 확인하기</h1>
+	<div id="input">
+		<input type="text">
 	</div>
-
-	<p></p>
-	<pre></pre>
-	<pre name="source"></pre>
+	
+	<h2>결과</h2>
+	<div id="result"></div>
 </body>
 </html>

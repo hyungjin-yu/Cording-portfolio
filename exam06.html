@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/event.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	// 키 코드 값을 파라미터로 전달받아서 키의 이름을 리턴하는 함수
+	function getKeyName(keyCode) {
+		var keyMap = [{code:8, name:"backspace"},
+					  {code:9, name:"tab"},
+					  {code:13, name:"enter"},
+					  {code:16, name:"shift"},
+					  {code:17, name:"ctrl"},
+					  {code:18, name:"alt"},
+					  {code:19, name:"pausebreak"},
+					  {code:20, name:"capslock"},
+					  {code:21, name:"han/eng"},	// 동작 안될 가능성 있음
+					  {code:25, name:"hanja"},		// 동작 안될 가능성 있음
+					  {code:27, name:"esc"}]
+		for(var i = 0; i < keyMap.length; i ++) {
+			if(keyMap[i].code == keyCode) {
+				return keyMap[i].name;
+			}
+		}
+	}
+
+	$(function() {
+		$("input[type='text']").keydown(function(e) {
+			var result = e.which + "번 눌러짐 >> " + getKeyName(e.which);
+			$("#result").html(result);
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>Key 이벤트 확인하기</h1>
+	<div id="input">
+		<input type="text">
+	</div>
+
+	<h2>결과</h2>
+	<div id="result"></div>
+</body>
+</html>

@@ -7,20 +7,25 @@
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#input").hover(function(){ 	// 태그에 마우스가 올라감
-			$("#result").html("Mouse In Event");
-		}, function(){					// 태그에서 마우스가 빠져나감
-			$("#result").html("Mouse Out Event");
+		$("input[type='text']").focus(function() {
+			$("#result").html("포커스가 들어갔습니다.");
 		});
+		
+		$("input[type='text']").blur(function() {
+			$("#result").html("포커스가 나왔습니다.");
+		});
+		
+		// 페이지가 시작될 때 자동으로 포커스 설정
+		$("input[type='text']").focus();
 	});
 </script>
 </head>
 <body>
-	<h1>클릭 이벤트 확인하기</h1>
+	<h1>Key 이벤트 확인하기</h1>
 	<div id="input">
-		Mouse Hover or Out Here~!!
+		<input type="text">
 	</div>
-	
+
 	<h2>결과</h2>
 	<div id="result"></div>
 </body>

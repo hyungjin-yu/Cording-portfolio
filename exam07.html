@@ -7,20 +7,21 @@
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#input").hover(function(){ 	// 태그에 마우스가 올라감
-			$("#result").html("Mouse In Event");
-		}, function(){					// 태그에서 마우스가 빠져나감
-			$("#result").html("Mouse Out Event");
+		var cnt = 0;
+		
+		$("input[type='text']").keypress(function() {
+			cnt++;
+			$("#result").html("key count : " + cnt);
 		});
 	});
 </script>
 </head>
 <body>
-	<h1>클릭 이벤트 확인하기</h1>
+	<h1>Key 이벤트 확인하기</h1>
 	<div id="input">
-		Mouse Hover or Out Here~!!
+		<input type="text">
 	</div>
-	
+
 	<h2>결과</h2>
 	<div id="result"></div>
 </body>
