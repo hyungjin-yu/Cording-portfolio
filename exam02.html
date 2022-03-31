@@ -4,18 +4,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+div {
+	width: 480px; height: 300px;
+	padding-top: 20px;
+	background-size: 100% 100%;
+}
+ul {
+	padding: 10px 20px;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+</style>
 <script type="text/javascript">
-	function hello() {
-		//var h1 = document.getElementById("hello");
-		//h1.innerHTML = "Hello jQuery!!";
-		var h1 = $("#hello");			// id가 hello인 대그 읽어오기
-		h1.html("Hello Jquery!!");		// h1 태그에 문자열 출력
-	}
-
-	jQuery(hello);
+	$(function() {
+		$(".item > a").click(function(){
+			var index = $(this).parent().index();
+			var image = ["img/1.jpg", "img/2.jpg", "img/3.jpg"]
+			$(this).parents("div").css("background-image", "url('" + image[index] + "')")
+			
+			return false;	// a 태그 무효화
+		});
+	});
 </script>
 </head>
 <body>
-	<h1 id="hello"></h1>
+	<div>
+		<ul id="menu">
+			<li class="item"><a href="#">img/1.jpg</a></li>
+			<li class="item"><a href="#">img/2.jpg</a></li>
+			<li class="item"><a href="#">img/3.jpg</a></li>
+		</ul>
+	</div>
 </body>
 </html>

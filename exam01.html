@@ -4,22 +4,39 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function hello() {
-		var h1 = document.getElementById("hello");
-		h1.innerHTML = "Hello jQuery!!";
-	}
-
-	jQuery(hello);		// jQuery(함수명)브라우저가 모든 태그를 인식한 후, hello함수 호출
+<style type="text/css">
 	
-/*
-	window.onload = function() {
-		hello();
-	}
-*/
+</style>
+<script type="text/javascript">
+	$(function() {
+		$("td:eq(4)").css("background", "yellow");
+		$("td").eq(2).css("background", "red");
+		$("td:eq(4)").next().css("background", "blue");
+		$("td").eq(4).prev().css("background", "green");
+		$("td:eq(4)").parent().css("color", "white");
+		$("td:eq(4)").parent().next().css("color", "red");
+		$("td:eq(4)").parent().next().children().css("text-decoration", "underline");
+		$("td:eq(4)").parent().next().children().eq(1).css("font-size", "30px");
+	});
 </script>
 </head>
 <body>
-	<h1 id="hello">test</h1>
+	<table border="1">
+		<tr>
+			<td>1번</td>
+			<td>2번</td>
+			<td>3번</td>
+		</tr>
+		<tr>
+			<td>4번</td>
+			<td>5번</td>
+			<td>6번</td>
+		</tr>
+		<tr>
+			<td>7번</td>
+			<td>8번</td>
+			<td>9번</td>
+		</tr>
+	</table>
 </body>
 </html>

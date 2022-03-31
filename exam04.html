@@ -3,25 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/event.css">
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+body {
+	background: #252422;
+}
+ul {
+	padding: 0;
+	margin: 50px auto;
+	list-style: none;
+	width: 800px;
+}
+.title {
+	padding: 0;
+	margin: 0;
+}
+.title a {
+	display: block;
+	padding-top: 12px;
+	font-size: 14px;
+	text-indent: none;
+	font-weight: bold;
+	color: white;
+	height: 23px;
+	background: url("img/background.jpg");
+}
+.selected {
+	background: url("img/background-selected.jpg");
+}
+.content {
+	margin: 0;
+	background: #d4d0c8;
+	padding: 10px;
+	height: 200px;
+	overflow-y: auto; 
+}
+</style>
 <script type="text/javascript">
 	$(function() {
-		$("#input").hover(function(){ 	// 태그에 마우스가 올라감
-			$("#result").html("Mouse In Event");
-		}, function(){					// 태그에서 마우스가 빠져나감
-			$("#result").html("Mouse Out Event");
+		$(".collapsible > .content").load($(".collapsible .title a").attr("href"));
+		
+		$(".collapsible > .title a").addClass("selected");
+		
+		$(".collapsible").not(":eq(0)").find(".content").hide();
+		
+		$(".collapsible .title a").click(function() {
+			$(this).toggleClass("selected");
+			// 클릭된 태그를 제외하고 select클래스를 제거
+			$(".collapsible .title a").not(this).removeClass("selected");
+			
+			// 펼칠 p태그 검색
+			var target = $(this).parents(".collapsible").find(".content");
+			
+			// 나머지 p태그 검색
+			var other = $(".collapsible .title a").not(this).parents(".collapsible").find(".content");
+			
+			// 애니메이션 열고 닫기
+			target.slideToggle(300);
+			other.slideUp(300);
+			
+			// p태그에 내용 출력
+			// 현재 클릭된 항목에 대한 내용이 열려진 상태라면 
+			if(target.css("display") != "none") {
+				target.load($(this).atte("href"));
+			}
+			
+			return false;
 		});
 	});
 </script>
 </head>
 <body>
-	<h1>클릭 이벤트 확인하기</h1>
-	<div id="input">
-		Mouse Hover or Out Here~!!
-	</div>
-	
-	<h2>결과</h2>
-	<div id="result"></div>
+	<ul>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/html5.txt">HTML5</a></h2>
+			<p class="content"></p>
+			
+		</li>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/jquery.txt">jQuery</a></h2>
+			<p class="content"></p>
+			
+		</li>
+		<li class="collapsible">
+			<h2 class="title"><a href="txt/bootstrap.txt">Bootstrap</a></h2>
+			<p class="content"></p>
+			
+		</li>
+	</ul>
 </body>
 </html>
