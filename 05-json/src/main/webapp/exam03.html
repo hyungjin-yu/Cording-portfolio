@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<style type="text/css">
+table {
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+}
+table.left {
+	text-align: left;
+}
+table thead {
+	border-bottom: 2px solid #285e8e;
+	font-weight: bold;
+}
+table tbody tr {
+	border-bottom: 1px dotted #ccc;
+}
+.example table .no {
+	width: 10%;
+}
+.example table .subject {
+	width: 60%;
+}
+.example table .hit {
+	width: 10%;
+}
+.example table .date {
+	width: 20%;
+}
+td, th {
+	padding: 10px 0;
+}
+</style>
+<script type="text/javascript">
+	function itemTemplate(no, subject, hit, date) {
+		// 태그 생성
+		var tr = $("<tr>");
+		var td1 = $("<td>").html(no);
+		var td2 = $("<td>").html(subject);
+		var td3 = $("<td>").html(hit);
+		var td4 = $("<td>").html(date);
+		
+		// 조립
+		tr.append(td1).append(td2).append(td3).append(td4);
+		
+		// 출력
+		$("div.example > table > tbody").append(tr);
+	}
+
+	$(function() {
+		$.get("ajax/json/bbs.jsp", {}, function(json){
+			// 제목, 내용, 전체 글 수 추출 및 출력
+			$("h1.title").html(json.title);
+			$("div.exec:eq(0)").html(json.description);
+			$("div.exec:eq(1) > span").html(json.total);
+			
+			// 글 항목 배열 추출
+			var items = json.item;
+			for(var i = 0; i < items.length; i++) {
+				var no = items[i].no;
+				var subject = items[i].subject;
+				var hit = items[i].hit;
+				var date = items[i].date;
+				
+				itemTemplate(no, subject, hit, date);
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<h1 class="title"></h1>
+	<div class="exec"></div>
+	<div class="exec">
+		총 게시물 수 : <span></span>개
+	</div>
+	
+	<div class="example">
+		<table>
+			<thead>
+				<tr>
+					<th class="no">번호</th>
+					<th class="subject">제목</th>
+					<th class="hit">조회수</th>
+					<th class="date">작성일시</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<!-- 목록이 출력될 곳 -->
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

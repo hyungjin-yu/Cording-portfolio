@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#mybtn").click(function() {
+			$.ajax({
+				url: "ajax/json/json04.json",
+				type: "get",
+				dataType: "json",
+				cache: false,
+				timeout: 30000,
+				success: function(json){
+					var title = json.school.subject.title;
+					var time = json.school.subject.time;
+					var teacher = json.school.subject.teacher;
+					
+					// 태그 생성
+					var ul = $("<ul>");
+					var li1 = $("<li>").html(title);
+					var li2 = $("<li>").html(time);
+					var li3 = $("<li>").html(teacher);
+					
+					// 조립 및 출력
+					$("#result").append(ul.append(li1).append(li2).append(li3));
+					
+				},
+				error: function(xhr, textStatus, errorThrown){
+					$("#result").html("[ERROR] " + xhr.status);
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 json 데이터 읽기(1)</h1>
+	<div class="exec">
+		<input type="button" value="json데이터 가져오기" id="mybtn">
+	</div>
+
+	<div class="console" id="result"></div>
+</body>
+</html>

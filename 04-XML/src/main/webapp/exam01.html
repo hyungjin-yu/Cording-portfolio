@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#mybtn").click(function(){
+			$.ajax({
+				url: "ajax/xml/xml03.xml",
+				type: "get",
+				dataType: "xml",
+				cache: false,
+				timeout: 30000,
+				success: function(xml){
+					var title = $(xml).find("title").text();
+					var time = $(xml).find("time").text();
+					var teacher = $(xml).find("teacher").text();
+					
+					// 태그 생성
+					var div = $("<div>");
+					var p1 = $("<p>").html(title);
+					var p2 = $("<p>").html(time);
+					var p3 = $("<p>").html(teacher);
+					
+					// 태그 조립
+					div.append(p1).append(p2).append(p3);
+					
+					// 출력
+					$("#result").append(div);
+				},
+				error: function(xhr, textStatus, errorThrown){
+					$("#result").html("[ERROR] " + xhr.status);
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<h1 class="title">$.ajax() 함수를 사용한 XML 데이터 읽기(1)</h1>
+	<div class="exec">
+		<input type="button" value="xml데이터 가져오기" id="mybtn">
+	</div>
+	
+	<div class="console" id="result"></div>
+</body>
+</html>
