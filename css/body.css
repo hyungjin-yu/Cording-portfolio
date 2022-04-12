@@ -1,0 +1,57 @@
+@charset "UTF-8";
+#new_release {			/* 신상품 */
+	width: 1350px;
+	height: 350px;
+	display: table;
+	margin: auto;
+	background: #ccc;	/* 임시 */
+}
+#new_release_inner {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+.title {
+	display: inline-block;
+	font-size: 24px;
+	font-weight: bold;
+}
+#new_release_img {
+	display: inline-block;
+}
+#recommend {			/* 추천상품 */
+	display: table;
+	margin: auto;
+}
+#recommend_inner {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+.recommend_item {
+	display: inline-block;
+	float: left;
+	margin: 0 30px;
+}
+#best {					/* 인기상품 */
+	width: 1350px;
+	margin: auto;
+}
+#best_inner {
+	display: table-cell;
+	text-align: center;
+}
+#best_item {
+	width: 1350px;
+	height: 500px;
+}
+.best_content {
+	width: 60%;
+	height: 500px;
+	text-align: left;
+	float: left;
+}
+.best_img {
+	width: 40%;
+	float: left;
+}

@@ -1,0 +1,26 @@
+@charset "UTF-8";
+#cartList_title {
+	margin: auto;
+	padding: 0 30px;
+	text-align: center;
+}
+#cartList_list{
+	width: 1350px;
+}
+#cartList_item {
+	width: 70%;
+	background: pink;
+	float: left;
+}
+#cartList_order {
+	width: 30%;
+	height: 400px;
+	background: #ccc;
+	float: left;
+}
+#order_cost {
+	padding: 10px;
+}
+#order_cost_title {
+	background: orange;
+}
