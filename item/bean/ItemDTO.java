@@ -1,7 +1,6 @@
 package item.bean;
 
 public class ItemDTO {
-	private String user_id; // 회원 id
 	private String item_code; // 상품 번호
 	private int item_seq; // 시퀀스
 	private String item_category1; // 카테고리1(MEN/WOMEN/KIDS)
@@ -16,14 +15,6 @@ public class ItemDTO {
 	private int cart_qty; // 상품개수
 	private int item_price; // 상품 개별 금액
 	private String item_date; // 상품 등록일
-	
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 
 	public String getItem_code() {
 		return item_code;

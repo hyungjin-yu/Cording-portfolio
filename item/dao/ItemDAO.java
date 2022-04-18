@@ -29,11 +29,6 @@ public class ItemDAO {
 		return sqlSession.selectOne("mybatis.itemMapper.getTotalA");
 	}
 	
-	// 상품 등록
-	public int itemWrite(ItemDTO dto) {
-		return sqlSession.insert("mybatis.itemMapper.itemWrite", dto);
-	}
-	
 	// 상품 상세보기
 	public ItemDTO itemView(int seq) {
 		return sqlSession.selectOne("mybatis.itemMapper.itemView", seq);
