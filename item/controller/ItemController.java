@@ -48,8 +48,41 @@ public class ItemController {
 		modelAndView.addObject("startPage", startPage);
 		modelAndView.addObject("endPage", endPage);
 		// view 처리 파일명 저장
-		modelAndView.addObject("req", "itemList.jsp");
-		modelAndView.setViewName("../main/Index.jsp");
+		modelAndView.addObject("req", "../main/body.jsp");
+		modelAndView.setViewName("itemList.jsp");
+		return modelAndView;
+	}
+
+	// 신발 분류 목록
+	@RequestMapping(value = "/item/shoes_item.do")
+	public ModelAndView ShoesList() {
+		// 화면 네비게이션
+		ModelAndView modelAndView = new ModelAndView();
+		// view 처리 파일명 저장
+		modelAndView.addObject("req", "../item/shoes_item.jsp");
+		modelAndView.setViewName("itemList.jsp");
+		return modelAndView;
+	}
+
+	// 의류 분류 목록
+	@RequestMapping(value = "/item/clothes_item.do")
+	public ModelAndView ClothesList() {
+		// 화면 네비게이션
+		ModelAndView modelAndView = new ModelAndView();
+		// view 처리 파일명 저장
+		modelAndView.addObject("req", "../item/clothes_item.jsp");
+		modelAndView.setViewName("itemList.jsp");
+		return modelAndView;
+	}
+
+	// 용품 분류 목록
+	@RequestMapping(value = "/item/sports_item.do")
+	public ModelAndView SportsList() {
+		// 화면 네비게이션
+		ModelAndView modelAndView = new ModelAndView();
+		// view 처리 파일명 저장
+		modelAndView.addObject("req", "../item/sports_item.jsp");
+		modelAndView.setViewName("itemList.jsp");
 		return modelAndView;
 	}
 

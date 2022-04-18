@@ -9,6 +9,7 @@ public class OrderDTO {
 	private int cart_seq; // 시퀀스
 	private String item_code; // 상품 번호
 	private String item_name; // 상품 이름
+	private String item_image1; // 이미지 1(메인 이미지)
 	private String item_color; // 색상
 	private String item_size; // 사이즈
 	private int item_price; // 상품 개별 금액
@@ -18,6 +19,14 @@ public class OrderDTO {
 	private String user_addr1; // 주소
 	private String user_addr2; // 상세주소
 	private String ord_payment; // 결제 수단
+
+	public String getItem_image1() {
+		return item_image1;
+	}
+
+	public void setItem_image1(String item_image1) {
+		this.item_image1 = item_image1;
+	}
 
 	public String getOrd_date() {
 		return ord_date;
