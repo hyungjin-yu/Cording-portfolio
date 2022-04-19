@@ -5,7 +5,7 @@ import java.util.List;
 import item.bean.ItemDTO;
 
 public interface ItemService {
-	public List<ItemDTO> itemList(int startNum, int endNum);
+	public List<ItemDTO> itemList();
 	public int getTotalA();
-	public ItemDTO itemView(int seq);
+	public ItemDTO itemView();
 }

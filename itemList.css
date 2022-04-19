@@ -51,6 +51,7 @@ main {
 	display: inline;
 	outline: 0px;
 	margin-left: 30px;
+	text-align: center;
 }
 .filter {
 	text-align: center;
@@ -121,7 +122,6 @@ img {
 	grid-template-rows: repeat(3, minmax(100px, auto));
 	row-gap: 50px;
 	column-gap: 50px;
-	
 }
 select {
 	width: 200px;
