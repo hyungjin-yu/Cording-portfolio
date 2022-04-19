@@ -17,11 +17,8 @@ public class ItemDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	// 상품 목록
-	public List<ItemDTO> itemList(int startNum, int endNum) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		return sqlSession.selectList("mybatis.itemMapper.itemList", map);
+	public List<ItemDTO> itemList() {
+		return sqlSession.selectList("mybatis.itemMapper.itemList");
 	}
 	
 	// 상품 총 개수 구하기
@@ -30,7 +27,7 @@ public class ItemDAO {
 	}
 	
 	// 상품 상세보기
-	public ItemDTO itemView(int seq) {
-		return sqlSession.selectOne("mybatis.itemMapper.itemView", seq);
+	public ItemDTO itemView() {
+		return sqlSession.selectOne("mybatis.itemMapper.itemView");
 	}
 }

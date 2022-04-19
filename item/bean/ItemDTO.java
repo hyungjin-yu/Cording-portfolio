@@ -16,6 +16,15 @@ public class ItemDTO {
 	private int item_price; // 상품 개별 금액
 	private String item_date; // 상품 등록일
 
+	@Override
+	public String toString() {
+		return "ItemDTO [item_code=" + item_code + ", item_seq=" + item_seq + ", item_category1=" + item_category1
+				+ ", item_category2=" + item_category2 + ", item_category3=" + item_category3 + ", item_name="
+				+ item_name + ", item_image1=" + item_image1 + ", item_image2=" + item_image2 + ", item_details="
+				+ item_details + ", item_size=" + item_size + ", item_color=" + item_color + ", cart_qty=" + cart_qty
+				+ ", item_price=" + item_price + ", item_date=" + item_date + "]";
+	}
+
 	public String getItem_code() {
 		return item_code;
 	}

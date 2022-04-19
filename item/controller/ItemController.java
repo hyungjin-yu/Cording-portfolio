@@ -25,63 +25,91 @@ public class ItemController {
 		if (request.getParameter("pg") != null)
 			pg = Integer.parseInt(request.getParameter("pg"));
 
-		int endNum = pg * 5;
-		int startNum = endNum - 4;
-
-		List<ItemDTO> list = itemService.itemList(startNum, endNum);
-
-		int totalA = itemService.getTotalA();
-		int totalP = (totalA + 4) / 5;
-
-		int startPage = (pg - 1) / 3 * 3 + 1;
-		int endPage = startPage + 2;
-
-		if (endPage > totalP)
-			endPage = totalP;
+		List<ItemDTO> list = itemService.itemList();
 
 		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
 		// 공유 데이터 저장
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("list", list);
-		modelAndView.addObject("totalP", totalP);
-		modelAndView.addObject("startPage", startPage);
-		modelAndView.addObject("endPage", endPage);
-		// view 처리 파일명 저장
-		modelAndView.addObject("req", "../main/body.jsp");
-		modelAndView.setViewName("itemList.jsp");
-		return modelAndView;
-	}
-
-	// 신발 분류 목록
-	@RequestMapping(value = "/item/shoes_item.do")
-	public ModelAndView ShoesList() {
-		// 화면 네비게이션
-		ModelAndView modelAndView = new ModelAndView();
 		// view 처리 파일명 저장
 		modelAndView.addObject("req", "../item/shoes_item.jsp");
 		modelAndView.setViewName("itemList.jsp");
 		return modelAndView;
 	}
 
+	// 신발 분류 목록
+	@RequestMapping("/item/shoes_item.do")
+	public ModelAndView ShoesList(HttpServletRequest request) {
+		
+		int pg = 1;
+		
+		if (request.getParameter("pg") != null)
+			pg = Integer.parseInt(request.getParameter("pg"));
+		
+		List<ItemDTO> list = itemService.itemList();
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_name("item_name");
+		dto.setItem_image1("item_image1");
+		dto.setItem_details("item_details");
+		list.add(dto);
+		
+		// 화면 네비게이션
+		ModelAndView modelAndView = new ModelAndView();
+		// view 처리 파일명 저장
+		modelAndView.addObject("req", "../item/shoes_item.jsp");
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("pg", pg);
+		modelAndView.setViewName("itemList.jsp");
+		return modelAndView;
+	}
+
 	// 의류 분류 목록
 	@RequestMapping(value = "/item/clothes_item.do")
-	public ModelAndView ClothesList() {
+	public ModelAndView ClothesList(HttpServletRequest request) {
+
+		int pg = 1;
+		
+		if (request.getParameter("pg") != null)
+			pg = Integer.parseInt(request.getParameter("pg"));
+		
+		List<ItemDTO> list = itemService.itemList();
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_name("item_name");
+		dto.setItem_image1("item_image1");
+		dto.setItem_details("item_details");
+		list.add(dto);
 		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
 		// view 처리 파일명 저장
 		modelAndView.addObject("req", "../item/clothes_item.jsp");
+		modelAndView.addObject("pg", pg);
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("itemList.jsp");
 		return modelAndView;
 	}
 
 	// 용품 분류 목록
 	@RequestMapping(value = "/item/sports_item.do")
-	public ModelAndView SportsList() {
+	public ModelAndView SportsList(HttpServletRequest request) {
+
+		int pg = 1;
+		
+		if (request.getParameter("pg") != null)
+			pg = Integer.parseInt(request.getParameter("pg"));
+		
+		List<ItemDTO> list = itemService.itemList();
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_name("item_name");
+		dto.setItem_image1("item_image1");
+		dto.setItem_details("item_details");
+		list.add(dto);
 		// 화면 네비게이션
 		ModelAndView modelAndView = new ModelAndView();
 		// view 처리 파일명 저장
 		modelAndView.addObject("req", "../item/sports_item.jsp");
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("pg", pg);
 		modelAndView.setViewName("itemList.jsp");
 		return modelAndView;
 	}
@@ -92,15 +120,15 @@ public class ItemController {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
 
-		ItemDTO dto = itemService.itemView(seq);
+		ItemDTO dto = itemService.itemView();
 
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("seq", seq);
 		modelAndView.addObject("pg", pg);
 		modelAndView.addObject("dto", dto);
-		modelAndView.addObject("req", "itemView.jsp");
+		modelAndView.addObject("req", "../item/itemView.jsp");
 
-		modelAndView.setViewName("itemView.jsp");
+		modelAndView.setViewName("itemlist.jsp");
 		return modelAndView;
 	}
 

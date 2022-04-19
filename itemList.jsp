@@ -35,15 +35,16 @@
 	<header class="container1">
 		<div class="category">
 			<ul class="category_bar">
-				<li><a href="../main/index.jsp">Men`s</a></li>
+				<li><a href="../main/index.jsp">Men</a></li>
 			</ul>
 		</div>
-		<!-- 메뉴 바 : 전체보기 신발 의류 -->
-		<div class="menu_bar">
+		<!-- 메뉴 바 : 신발 의류 용품 -->
+	<form method="post">
+		<div class="menu_bar"> 
 			<ul class="menu">
-				<li><a href="#">전체보기</a></li>
-				<li><a href="#">신발</a></li>
-				<li><a href="#">의류</a></li>
+				<li><a href="shoes_item.do">신발</a></li>
+				<li><a href="clothes_item.do">의류</a></li>
+				<li><a href="sports_item.do">용품</a></li>
 			</ul>
 		</div>
 		<!-- 필터 버튼 -->
@@ -60,6 +61,7 @@
 				</div>
 			</ul>
 		</div>
+	</form>
 	</header>
 	<!-- 상품 정렬 필터링 -->
 	
@@ -70,19 +72,19 @@
 			<a href="#" class="filtering">사이즈</a>
 				<div class="bar">
 					<ul>
-						<li><a href="#" id="250">250</a>
-						<li><a href="#" id="255">255</a>
-						<li><a href="#" id="260">260</a>
-						<li><a href="#" id="265">265</a>
+						<li><a href="itemList.do" id="250">250</a>
+						<li><a href="itemList.do" id="255">255</a>
+						<li><a href="itemList.do" id="260">260</a>
+						<li><a href="itemList.do" id="265">265</a>
 					</ul>
 				</div><br><br>
 			<a href="#" class="filtering">색상</a>
 				<div class="bar">
 					<ul>
-						<li><a href="#" id="white">White</a>
-						<li><a href="#" id="basic">Basic</a>
-						<li><a href="#" id="blue">Blue</a>
-						<li><a href="#" id="green">Green</a>
+						<li><a href="itemList.do" id="white">White</a>
+						<li><a href="itemList.do" id="basic">Basic</a>
+						<li><a href="itemList.do" id="blue">Blue</a>
+						<li><a href="itemList.do" id="green">Green</a>
 					</ul>
 				</div>
 		</div>
@@ -90,27 +92,37 @@
 	
 	<!-- 목록 -->
 	<main>
-		<!-- jsp include 영역 -->
-		
+		<div class="container3">
+			<div class="section">
+				<c:if test="${req == null}">
+					<jsp:include page="shoes_item.jsp" />
+				</c:if>
+				<c:if test="${req != null}">
+					<jsp:include page= "${req}" />
+				</c:if>
+			</div>
+		</div>
 		<!-- 페이지 표시 -->
+		<!-- 
 		<div style="text-align: center;">
 			<c:if test="${startPage > 3 }">
-				[<a class="paging" href="boardList.do?pg=${startPage - 1 }">이전</a>]
+				[<a class="paging" href="itemList.do?pg=${startPage - 1 }">이전</a>]
 			</c:if>
 		
 			<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 				<c:if test="${pg == i }">
-					[<a class="currentPaging" href="boardList.do?pg=${i }">${i }</a>]
+					[<a class="currentPaging" href="itemList.do?pg=${i }">${i }</a>]
 				</c:if>
 				<c:if test="${pg != i }">
-					[<a class="paging" href="boardList.do?pg=${i }">${i }</a>]
+					[<a class="paging" href="itemList.do?pg=${i }">${i }</a>]
 				</c:if>		
 			</c:forEach>
 		
 			<c:if test="${endPage < totalP }">
-				[<a class="paging" href="boardList.do?pg=${endPage + 1 }">다음</a>]
+				[<a class="paging" href="itemList.do?pg=${endPage + 1 }">다음</a>]
 			</c:if>		
 		</div> 
+		 -->
 	</main>
 	
 </body>

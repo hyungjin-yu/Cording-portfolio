@@ -26,7 +26,7 @@
 						 <input type="radio" value="payco" name="card">payco</label>
 	</main>
 	
-	<input type="submit" value="결제" id="pay">
+	<button type="button" value="결제" id="pay" onclick="location.href='order_check.jsp'">결제</button>
 	</div>
 </body>
 </html>
