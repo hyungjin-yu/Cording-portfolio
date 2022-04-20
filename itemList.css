@@ -85,7 +85,7 @@ main {
 	text-decoration: none;
 	color: #262222;
 }
-.bar a {
+.filtering button {
 	text-decoration: none;
 	color: #262222;
 }
@@ -107,7 +107,7 @@ img {
 	color: black;
 }
 
-.bar > *{
+.button-group > *{
 	list-style-type: none;
 	display: inline;
 	outline: 0px;
