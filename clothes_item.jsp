@@ -14,9 +14,13 @@
 		<div class="container3">
 			<div id="item">
 				<c:forEach var="dto" items="${list}">
-					<img alt="${dto.item_name}" src="${dto.item_image1}">
-					<label>${item_name}</label>
-					<label>${item_details}</label>
+					<div class="item_info">
+						<a href="order_info.jsp"><img src="${dto.item_image1}" id="item_image1"></a>
+						<label id="item_name">${dto.item_name}</label>
+						<label id="item_details">${dto.item_details}</label>
+						<label id="item_size">${dto.item_size}</label>
+						<label id="item_color">${dto.item_color}</label>
+					</div>
 				</c:forEach>
 			</div>
 		</div>
