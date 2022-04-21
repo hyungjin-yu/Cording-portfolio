@@ -11,7 +11,6 @@
 </head>
 <body>
 	<!-- 제품 상세 정보 -->
-	<form action="#" method="post">
 		<aside>
 			<div class="container2">
 				<a href="#" class="filtering"><strong>사이즈</strong></a>
@@ -46,7 +45,6 @@
 				</button>
 			</div>
 		</aside>
-	</form>
 	<!-- 제품 사진 -->
 	<main>
 		<div class="container3">

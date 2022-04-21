@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.bind.annotation.SessionAttribute"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/itemList.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../script/isotope.pkgd.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(".filtering").click(function() {
@@ -18,7 +18,6 @@
 				$(this).next().slideUp();
 			}
 		});
-
 		$("#filter_tool").click(function() {
 			if ($(".container2").next().css("marginLeft") == "0px") {
 				$(".container2").delay(10);
@@ -30,45 +29,6 @@
 				$(".container2").animate({width : "toggle"}, 0);
 			}
 		});
-
-		var filters = {};
-		var item_filter = $(".button-group  button");
-
-		var $grid = $('.item').isotope({
-			itemSelector : '.item > item_info'
-		});
-		
-		function concatValues(obj) {
-			var value = '';
-			for ( var prop in obj) {
-				value += obj[prop];
-			}
-			return value;
-		}
-
-		item_filter.click(function() {
-			var $button = $(this);
-
-			var $buttonGroup = $button.parents('.button-group');
-			var filterGroup = $buttonGroup.attr('data-filter-group');
-
-			filters[filterGroup] = $button.attr('data-filter');
-
-			var filterValue = concatValues(filters);
-
-			$grid.isotope({filter : filterValue});
-		});
-		
-		$('.button-group').each( function( i, buttonGroup ) {
-		  var $buttonGroup = $( buttonGroup );
-		  $buttonGroup.on( 'click', 'button', function( event ) {
-		    $buttonGroup.find('.is-checked').removeClass('is-checked');
-		    var $button = $( event.currentTarget );
-		    $button.addClass('is-checked');
-		  });
-		});
-	
-		$grid.isotope({ filter: '*' })
 	});
 </script>
 </head>
@@ -77,11 +37,10 @@
 	<header class="container1">
 		<div class="category">
 			<ul class="category_bar">
-				<li><a href="../main/index.jsp">Men</a></li>
+				<li><a href="../main/index.jsp">Product</a></li>
 			</ul>
 		</div>
 		<!-- 메뉴 바 : 신발 의류 용품 -->
-		<form method="post">
 			<div class="menu_bar">
 				<ul class="menu">
 					<li><a href="shoes_item.do">신발</a></li>
@@ -103,7 +62,6 @@
 					</div>
 				</ul>
 			</div>
-		</form>
 	</header>
 	<!-- 상품 정렬 필터링 -->
 
@@ -111,6 +69,7 @@
 	<!-- 필터리스트 -->
 	<aside>
 		<div class="container2">
+		<br>
 			<a href="#" class="filtering">사이즈</a>
 			<div class="button-group" data-filter-group="size">
 				<ul>
@@ -142,7 +101,7 @@
 		<div class="container3">
 			<div class="section">
 				<c:if test="${req == null}">
-					<jsp:include page="shoes_item.jsp" />
+					<jsp:include page="clothes_item.jsp" />
 				</c:if>
 				<c:if test="${req != null}">
 					<jsp:include page="${req}" />
@@ -171,6 +130,5 @@
 		</div> 
 		 -->
 	</main>
-
 </body>
 </html>

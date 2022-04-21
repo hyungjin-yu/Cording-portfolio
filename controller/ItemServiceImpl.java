@@ -15,8 +15,8 @@ public class ItemServiceImpl implements ItemService {
 	ItemDAO dao;
 
 	@Override
-	public List<ItemDTO> itemList() {
-		return dao.itemList();
+	public List<ItemDTO> itemList(int startNum, int endNum) {
+		return dao.itemList(startNum, endNum);
 	}
 
 	@Override
@@ -25,8 +25,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ItemDTO itemView() {
-		return dao.itemView();
+	public ItemDTO itemView(int seq) {
+		return dao.itemView(seq);
 	}
 
 }

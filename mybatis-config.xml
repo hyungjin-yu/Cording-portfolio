@@ -2,8 +2,23 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>	
+<configuration>
+	<!-- java beans 별명 짓기 -->
+	<typeAliases>
+		<!-- <typeAlias type="cart.bean.CartDTO" alias="cartDTO"/>	 -->
+		<!-- <typeAlias type="review.bean.ReviewDTO" alias="reviewDTO"/>  -->
+		<!-- <typeAlias type="inquriy.bean.InquiryDTO" alias="inquiryDTO"/> -->
+		<typeAlias type="item.bean.ItemDTO" alias="dto"/>
+		<typeAlias type="order.bean.OrderDTO" alias="OrderDTO"/>
+	</typeAliases>
+	
+	<!-- mapper 설정 -->
 	<mappers>
-		<mapper resource="score-mapping.xml" />
+	<!-- <mapper resource="mybatis/cart-mapping.xml"/>	 -->
+	<!-- <mapper resource="mybatis/review-mapping.xml"/> -->	
+	<!-- <mapper resource="mybatis/inquiry-mapping.xml"/> -->	
+		<mapper resource="mybatis/item-mapping.xml" />
+		<mapper resource="mybatis/order-mapping.xml" />
 	</mappers>
+	
 </configuration>
