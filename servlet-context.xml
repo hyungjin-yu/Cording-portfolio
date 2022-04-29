@@ -30,6 +30,17 @@
 	<context:component-scan base-package="cart"/>
 	<context:component-scan base-package="review"/>
 	<context:component-scan base-package="inquiry"/>
-	<context:component-scan base-package="item"/>
 	<context:component-scan base-package="order"/>
+	<context:component-scan base-package="item"/>
+	<context:component-scan base-package="admin"/>
+	<context:component-scan base-package="notice"/>
+	<context:component-scan base-package="member"/>
+	<context:component-scan base-package="sales"/>
+	<context:component-scan base-package="profile"/>
+	
+	<!-- multipartResolver 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  	 <beans:property name="maxUploadSize" value="5000000"/>
+  	 <beans:property name="defaultEncoding" value="UTF-8"/>
+	</beans:bean>
 </beans:beans>
