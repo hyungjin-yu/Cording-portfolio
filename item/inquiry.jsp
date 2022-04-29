@@ -6,41 +6,48 @@
 <head>
 <meta charset="UTF-8">
 <title>문의 게시판</title>
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/inquiry.css">
 <script type="text/javascript" src="../script/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#inquiry_submit").click(function(){
 			//입력검사
-			if(!$("#comment").val()) {
-				alert("내용을 입력해주세요.");
-				$("#comment").focus();
+			if(!$("#subject_form").val()) {
+				alert("제목을 입력해주세요.");
+				$("#subject_form").focus();
 				return false;
-			} 
+			} else if(!$("#comment_form").val()) {
+				alert("내용을 입력해주세요.");
+				$("#comment_form").focus();
+				return false;
+			}
 			
-			$("#comment").val("");	// 오류 있음ㅜㅜ
+			var subject = $("#subject_form").val();
+			var comment = $("#comment_form").val();
+			//alert("subject_form =" + subject + " comment_form = " + comment);
 			
-			// DB로 보내기 : 05-json exam03
-			
+			// DB로 보내기
+			location.href="../item/inquiryWrite.do?inquiry_subject=" + subject + "&inquiry_content=" + comment;
 		});
 	});
 	
 </script>
 </head>
-<body>
-	<div id="container">
+<body id="inquiry_body">
+	<div id="inquiry_container">
+		<h2>1:1 문의게시판</h2>
 		<!-- 문의글 작성폼 -->
+		<div class="inquiry_form">
 		<div id="inquiry_write">
-			<p id="inquiry_info">-문의사항을 적어주세요-</p>
-			<form action="" id="inquiryForm">
-				<div id="inquiry_comment">
-					<label>문의 내용</label>
-					<textarea name="comment" id="comment"></textarea>
-				</div>
-				<div id="inquiry_submit">
-					<img alt="" src="../img/submit.png" width="25" height="25">
-				</div>
-			</form>
+			<p id="inquiry_info">-문의사항을 적어주세요-</p><br>
+			<div id="inquiry_comment">
+				<div>제목 : <input type="text" id="subject_form" size="80"></div>
+				<div><textarea name="comment" id="comment_form"></textarea></div>
+			</div>
+			<div id="inquiry_submit">
+				<img src="../img/submit.png" width="25" height="25" style="cursor:pointer;">
+			</div>
 		</div>
 		
 		<hr>
@@ -58,15 +65,17 @@
 				<c:forEach var="vo" items="${list }">
 					<tr>
 						<td>${vo.inquiry_code }</td>	<!-- 글번호 -->
-						<td align="left">
+						<td style="text-align: left; padding: 0 20px;">
 							<c:if test="${vo.re_lev != 0 }">
 								<!-- 두글자 공백문자 띄우기 -->
 								<c:forEach var="i" begin="0" end="${vo.re_lev * 2 }" step="1">
 									&nbsp;
 								</c:forEach>
-								▶
+								└
 							</c:if>
-							<a href="#">	<!-- inquiryView.do?pg=${pg }&inquiry_code=${vo.inquiry_code } -->
+							<!-- 제목 누를 때마다 조회수 증가 -->
+							<a href="../item/inquiryView.do?pg=${pg }&inquiry_code=${vo.inquiry_code }" 
+								class="inquiry_subject_link">
 								${vo.inquiry_subject }
 							</a>
 						</td>
@@ -75,27 +84,28 @@
 						<td>${vo.inquiry_readcount }</td>
 					</tr>
 				</c:forEach>				
-			</table>
-			
-			<!-- 페이징처리 -->
-			<div style="text-align: center;">
+			</table>	
+			</div>
+		</div>
+		
+		<!-- 페이징처리 -->
+			<div style="text-align: center;" class="inquiryList_page">
 			<c:if test="${startPage > 3 }">
-				<a class="paging" href="#">&#10094;</a>
+				<a class="paging" href="inquiryList.do?pg=${startPage - 1 }">&#10094;</a>
 			</c:if>
 	
 			<c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
 				<c:if test="${pg == i }">
-					<a class="currentPaging" href="#">${i }</a>
+					<a class="currentPaging" href="inquiryList.do?pg=${i }">${i }</a>
 				</c:if>
 				<c:if test="${pg != i }">
-					<a class="paging" href="#">${i }</a>
+					<a class="paging" href="inquiryList.do?pg=${i }">${i }</a>
 				</c:if>		
 			</c:forEach>
 	
 			<c:if test="${endPage < totalP }">
-				<a class="paging" href="#">&#10095;</a>
+				<a class="paging" href="inquiryList.do?pg=${endPage + 1 }">&#10095;</a>
 			</c:if>		
-			</div>
 		</div>
 	</div>
 </body>

@@ -1,0 +1,97 @@
+@charset "UTF-8";
+#member_list_wrap {
+	width: 100%;
+	height: 550px;
+	display: inline-flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+#member_list_wrap_inner {
+	width: 80%;
+	height: 399px;
+	border-collapse: collapse;
+}
+#member_list_label_div {
+	width: 100%;
+	height: 40px;
+	font-size: 50px;
+	display: inline-table;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#member_search_div {
+	height: 35px;
+	margin-bottom: 15px;
+}
+#member_search_by_word_div {
+	display: inline;
+	float: right;
+	margin-bottom: 15px;
+}
+#member_search_by_word_input_div {
+	display: inline;
+	height: 100%;;
+	
+}
+#member_search_by_word_button {
+	display: inline;
+}
+
+#member_search_category1-1, 
+#member_search_category2-2, 
+#member_search_category2-3 {
+	height: 100%;
+}
+#member_search_by_word_input_div > input[type="text"] {
+	height: 32px;
+}
+#member_search_by_word_button {
+	background-color: black;
+	color: white;
+	height: 35px;
+	border: 1px solid black;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#member_search_by_word_button:hover {
+	color: #767677;
+	border: 1px solid #767677;
+	cursor: pointer;
+}
+
+#member_list {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+#member_list_table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+#member_list_table > tr, th, td {
+	height: 25px;
+	text-align: center;
+	border-top: 1px solid #767677;
+	border-bottom: 1px solid #767677;
+	padding: 10px;
+}
+
+.pagination {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+.pagination a.active {
+	background-color: #4CAF50;
+	color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}

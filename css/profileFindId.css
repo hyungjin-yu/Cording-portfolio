@@ -1,0 +1,100 @@
+@charset "UTF-8";
+#findId_body {
+	width: 100%;
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+	line-height: 1.6;
+	text-align: center;
+}
+#findId_container {
+	text-align: center;
+	width: 470px;
+	height: 300px;
+	/*margin: 0 auto;*/
+}
+
+.find_id {
+	text-align: left;
+	margin: auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+input {
+	border: none;
+	font-size: 15px;
+}
+
+.label-input__input {
+	resize: none;
+	width: 98%;
+	height: 45px;
+	font-size: 15px;
+}
+
+.button-is-primary-is-block {
+	background-color: #2c3d51;
+	border-color: #2c3d51;
+	-webkit-box-shadow: 0 3px 0 #080c0f;
+	box-shadow: 0 3px 0 #080c0f;
+	width: 470px;
+	height: 50px;
+	color: white;
+	align-items: center;
+}
+
+.button__wrapper {
+	background-color: none;
+	font-color: white;
+	text-align: center;
+}
+.button__wrapper_a {
+	background-color: none;
+	font-color: white;
+	text-align: left;
+}
+.button-is-secondary-daumSearchButton {
+	background-color: white;
+	border-color: #2c3d51;
+	-webkit-box-shadow: 0 1px 0 #080c0f;
+	box-shadow: 0 1px 0 #080c0f;
+	width: 40%;
+	height: 35px;
+	color: black;
+}
+.button-gender {
+	background-color: #ffffff;
+	border-color: #2c3d51;
+	-webkit-box-shadow: 0 1px 0 #080c0f;
+	box-shadow: 0 1px 0 #080c0f;
+	width: 232px;
+	height: 44px;
+	color: #000040;
+	
+}

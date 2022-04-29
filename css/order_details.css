@@ -1,0 +1,59 @@
+@charset "UTF-8";
+#orderdetail_body {
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+	line-height: 1.6;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.allOrderdetails {
+	margin: auto;
+	text-align: center;
+	width: 800px;
+	height: 1500px;
+}
+
+.text-box-is-top-only-orderDetailContianer {
+	background-color: #ffffff;
+	border: 3px solid #2c3d51;
+	text-align: left;
+}
+.text-box-orderContainer {
+	background: #ededed;
+	border-color: 0 3px 0 #2c3d51;
+	-webkit-box-shadow: 0 3px 0 #080c0f;
+	box-shadow: 0 3px 0 #080c0f;
+	height: 300px;
+}
+.account-order-item {list-style: none;}
+.cart-product__description {padding: 0 40px;}
+.customer__block {
+	color: black;
+	text-align: left;
+	border: 3px solid gray;
+	display: inline-block; 
+	width: 380px;
+	padding: 5px;
+}
+.cart-prices {
+	width: 780px;
+	height: 300px;
+}
+
+.rs-ol-tile-list-as-grid {
+	list-style:none;
+	background: gray;
+	width: 100px;
+	height: 300px;
+}
+.rs-ol-tile-as-grid-item {
+	float: left;
+	background: #ededed;
+}
+
+.rs-ol-tile-image {
+	resize: none;
+	width: 100px;
+	height: 90px;
+}

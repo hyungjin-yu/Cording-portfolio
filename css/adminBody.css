@@ -1,0 +1,93 @@
+@charset "UTF-8";
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+#admin_body_wrap {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+
+#admin_body_wrap_inner {
+	width: 80%;
+}
+
+#admin_body_label_div {
+	width: 100%;
+	height: 40px;
+	font-size: 50px;
+	display: inline-table;
+	margin-top: 25px;
+	margin-bottom: 100px;
+}
+
+#admin_body_button_wrap_div {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+
+#admin_body_button_wrap_inner_div {
+	width: 100%;
+	display: inline-flex;
+}
+
+.admin_body_field {
+	height: 70px;
+}
+
+/*
+label {
+	font-size: 16px;
+	letter-spacing: 1px;
+	color: #767677;
+	position: absolute;
+	pointer-events: none;
+	left: 21px;
+	top: 14px;
+	transition: .2s ease all;
+}
+*/
+
+.admin_body_button_div {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+.admin_body_button_div > button {
+	width: 100%;
+	height: 70px;
+	border: 1px solid black;
+	font-size: inherit;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/*
+#admin_notice_button, 
+#admin_item_button, 
+#admin_member_button, 
+#admin_sales_button {
+	background-color: black;
+	color: white;
+}
+*/
+
+#admin_notice_button:hover, 
+#admin_item_button:hover, 
+#admin_member_button:hover, 
+#admin_sales_button:hover {
+	color: #767677;
+	border: 1px solid #767677;
+	cursor: pointer;
+}

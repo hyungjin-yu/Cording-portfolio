@@ -1,4 +1,8 @@
 @charset "UTF-8";
+body {
+	color: #222222;
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+}
 #cartList_title {
 	margin: auto;
 	padding: 0 30px;
@@ -6,21 +10,87 @@
 }
 #cartList_list{
 	width: 1350px;
+	height: 600px;
+	margin: auto;
 }
 #cartList_item {
 	width: 70%;
-	background: pink;
+	height: 550px;
 	float: left;
+}
+#cartList_item_img {
+	float: left;
+}
+#cartList_item_table {
+	width: 800px;
+	height: 150px;
+	margin: 0 50px;
+	
 }
 #cartList_order {
 	width: 30%;
-	height: 400px;
-	background: #ccc;
+	height: 420px;
 	float: left;
 }
+.cartList_option_modify {
+	text-decoration: none;
+	color: #515151;
+}
 #order_cost {
+	border: 2px solid #B5B5B5;
+	width: 100%;
+	height: 420px;
 	padding: 10px;
+	font-weight: bold;
 }
 #order_cost_title {
-	background: orange;
+	text-align: center;
+	font-size: 19px;
+}
+#order_cost_btn {
+	text-align: center;
+	background: #222222;
+	font-size: 16px;
+	color: #fff;
+}
+#cartList_page {
+	text-align: center;
+	clear: both;
+}
+#cartList_recommend {
+	width: 1350px;
+	clear: both;
+	margin: auto;
+	display: table;
+}
+#cartList_recommend_inner {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.cartList_recommend_title {
+	font-size: 24px;
+	font-weight: bold;
+}
+.cartList_recommend_item {
+	display: inline-block;
+	float: left;
+	margin: 0 30px;
+}
+.paging {
+	text-decoration: none;
+	font-size: 20px;
+	color: #262222;
+}
+.paging:hover {
+	text-decoration: underline;
+}
+.currentPaging {
+	color: #AE4755;
+	font-size: 20px;
+}
+.cart_item_info {
+	float: right;
+	margin-top: 10px;
 }

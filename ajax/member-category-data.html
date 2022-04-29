@@ -1,0 +1,29 @@
+<!-- 1depth 카테고리 -->
+<select name="member_search_category1" id="member_search_category1-1">
+	<option>--- 검색할 카테고리 선택 ---</option>
+	<option value="user_id" data-target="#member_search_category2-1">이름</option>
+	<option value="user_gender" data-target="#member_search_category2-2">성별</option>
+	<option value="user_agegroup" data-target="#member_search_category2-3">연령대</option>
+	<option value="user_phone" data-target="#member_search_category2-4">연락처</option>
+	<option value="user_email" data-target="#member_search_category2-5">이메일</option>
+	<option value="user_addr" data-target="#member_search_category2-6">지역</option>
+	<option value="user_joindate" data-target="#member_search_category2-7">가입일</option>
+</select>
+
+<!-- 성별에 종속된 2depth 카테고리 -->
+<select name="member_search_category2" id="member_search_category2-2">
+  <option>--- 성별 선택 ---</option>
+  <option value="W">여자</option>
+  <option value="M">남자</option>
+</select>
+
+<!-- 연령대에 종속된 2depth 카테고리 -->
+<select name="member_search_category2" id="member_search_category2-3">
+  <option>--- 연령대 선택 ---</option>
+  <option value="10">10대</option>
+  <option value="20">20대</option>
+  <option value="30">30대</option>
+  <option value="40">40대</option>
+  <option value="50">50대</option>
+  <option value="60">60대</option>
+</select>

@@ -1,0 +1,146 @@
+@charset "UTF-8";
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+#item_write_wrap {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+}
+
+#item_write_wrap_inner {
+	width: 35%;
+}
+
+#item_write_label_div {
+	width: 100%;
+	height: 40px;
+	font-size: 50px;
+	display: inline-table;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.item_write_field {
+	height: 70px;
+}
+
+.item_write_field_details {
+	height: 240px;
+}
+
+.item_write_field > input[type='text'], select {
+	width: 100%;
+	height: 40px;
+    border: 1px solid #767677;
+}
+.item_write_field_details > textarea {
+	width: 100%;
+	height: 200px;
+    border: 1px solid #767677;
+}
+
+/*
+label {
+	font-size: 16px;
+	letter-spacing: 1px;
+	color: #767677;
+	position: absolute;
+	pointer-events: none;
+	left: 21px;
+	top: 14px;
+	transition: .2s ease all;
+}
+*/
+
+.item_write_field>input>placeholder::after {
+    content: "*";
+    color: #e32b2b;
+    margin-left: 4px;
+}
+
+.item_write_field_msg {
+	margin-bottom: 10px;
+	color: red;
+}
+
+.item_image_upload_name_div {
+	width: 72%;
+	display: inline-flex;
+}
+
+.item_image_upload_name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 100%;
+    color: #999999;
+}
+
+.item_image_input_file_div {
+	width: 28%;
+	height: 40px;
+	display: inline;
+	float: right;
+}
+
+.item_image_field label {
+    width: 100%;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #999999;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.item_image_field input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+
+#item_write_form_buttons_div {
+	width: 100%;
+	display: inline-flex;
+	justify-content: center;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+#item_write_form_buttons_div > button {
+	width: 120px;
+	height: 40px;
+	border: 1px solid black;
+	font-weight: bold;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#submit_button {
+	background-color: black;
+	color: white;
+}
+#reset_button {
+	background-color: white;
+	color: black;
+}
+#submit_button:hover, 
+#reset_button:hover {
+	color: #767677;
+	border: 1px solid #767677;
+	cursor: pointer;
+}

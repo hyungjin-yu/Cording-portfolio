@@ -1,0 +1,90 @@
+@charset "UTF-8";
+#inquiry_body {
+	margin: 5px;
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+}
+#inquiry_container {
+	width: 1350px;
+	height: 830px;
+	padding: 25px 20px;
+	margin: auto;
+}
+.inquiry_form {
+	width: 1350px;
+	height: 700px;
+	/*background: #DEDEDE;*/
+}
+#inquiry_write {
+	padding: 15px;
+	border-bottom: 1px solid #c0c0c0;
+	margin: auto;
+}
+#inquiry_comment { 	
+	text-align: center;
+}
+#inquiry_info {
+	font-size: 14px;
+	text-align: center;
+}
+#inquiry_write textarea {
+	border : 1px solid #ccc;
+	vertical-align: middle;
+	margin-top: 10px;
+	padding: 3px 10px;
+	font-size: 12px;
+	line-height: 150%;
+	width: 800px;
+	height: 150px;
+	resize: none;
+}
+#inquiry_submit {
+	text-align: right;
+	margin-right: 200px;
+}
+#inquiry_table {
+	width: 850px;
+	margin: auto;
+	font-size: 14px;
+}
+#inquiry_table td {
+	text-align: center;
+}
+#inquiry_code {
+	width: 70px;
+}
+#inquiry_subject {
+	width: *;
+}
+#inquiry_id {
+	width: 90px;
+}
+#inquiry_date {
+	width: 90px;
+}
+#inquiry_readcount {
+	width: 60px;
+}
+#inquiry_container h2 {
+	text-decoration: underline;
+	text-underline-position: under;
+}
+.inquiryList_page {
+	font-size: 19px;
+	margin-top: 20px;
+}
+.inquiry_subject_link {
+	text-decoration: none;
+	color: #262222;
+}
+.inquiry_subject_link:hover {
+	text-decoration: underline;
+	color: #262222;
+}
+.paging {
+	text-decoration: none;
+	color: #262222;
+}
+.currentPaging {
+	text-decoration: underline;
+	color: #AE4755;
+}

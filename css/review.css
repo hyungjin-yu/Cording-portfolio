@@ -1,0 +1,83 @@
+@charset "UTF-8";
+#review_body {
+	padding: 0;
+	margin: 5px;
+	color: #333;
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+}
+ul {
+	list-style: none;
+}
+#review_container {
+	width: 500px;
+	padding: 30px 20px;
+}
+#review_write {
+	padding: 20px 15px;
+	border-bottom: 1px solid #c0c0c0;
+}
+#review_info {
+	font-size: 14px;
+	text-align: center;
+}
+#stars_all {
+	padding: 10px 0 0 0;
+	text-align: right;
+}
+#review_write label {
+	display: inline-block;
+	width: 80px;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+#review_write textarea {
+	border : 1px solid #ccc;
+	vertical-align: middle;
+	padding: 3px 10px;
+	font-size: 12px;
+	line-height: 150%;
+	width: 400px;
+	height: 90px;
+	resize: none;
+}
+#review_submit {
+	text-align: right;
+}
+.comment_item {
+	display: none;
+}
+.comment_item {
+	font-size: 13px;
+	color: #333;
+	padding: 15px;
+	border-bottom: 1px dotted #ccc;
+	line-height: 150%;
+}
+.comment_item .writer {
+	color: #555;
+	line-height: 200%;
+}
+.comment_item .writer input {
+	vertical-align: middle;
+}
+.comment_item .writer .name {
+	color: #222;
+	font-weight: bold;
+	font-size: 14px;
+}
+#view_more_btn {
+	text-align: center;
+}
+.star_font {
+	font-weight: bold;
+	color: #F0A139;
+	font-size: 18px;
+	text-align: right;
+}
+.comment_item > p {
+	font-size: 17px;
+}
+.comment_id {margin-right: 50px;}
+.comment_modify {margin-left: 30px;}
+.comment_delete {margin-left: 10px;}

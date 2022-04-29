@@ -1,0 +1,89 @@
+@charset "UTF-8";
+#orderlist_body {
+	width: 100%;
+	font-family: 'Trebuchet MS', 'NanumSquareAcb', serif;
+	line-height: 1.6;
+	text-align: center;
+}
+
+.allOrderlist {
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 1350px;
+	height: 900px;
+	margin: auto;
+}
+
+#orderlist_container {
+	width: 1200px;
+	margin: 0 auto;
+	color: #222;
+}
+.rs-ol-tile-list-as-grid {
+	list-style:none;
+	width: 400px;
+	height: 650px;
+	display: table-cell;	
+}
+.rs-ol-tile-as-grid-item {
+	float: left;
+	width: 300px;
+	height: 400px;
+	border: 2px solid #ccc;
+	border-radius: 20px;
+}
+.order_info_inner{cursor: pointer;}
+.rs-ol-tile-image {
+	resize: none;
+	text-align: center;
+	margin-top: 20px;
+}
+.rs-ol-tile-info {
+	margin: 30px;
+	padding: 5px;
+}
+.button-is-primary-is-block {
+	background-color: #2c3d51;
+	border-color: #2c3d51;
+	-webkit-box-shadow: 0 3px 0 #080c0f;
+	box-shadow: 0 3px 0 #080c0f;
+	width: 480px;
+	height: 50px;
+	color: white;
+}
+
+.button__wrapper {
+	background-color: none;
+	font-color: white;
+	text-align: center;
+}
+.button-gender {
+	background-color: #ffffff;
+	border-color: #2c3d51;
+	-webkit-box-shadow: 0 3px 0 #080c0f;
+	box-shadow: 0 3px 0 #080c0f;
+	width: 235px;
+	height: 46px;
+	color: #000040;
+	
+}
+.rs-ol-wrapper {
+	display: table;
+}
+#orderlist_page {
+	clear: both;
+	text-align: center;
+}
+.paging {
+	text-decoration: none;
+	font-size: 20px;
+	color: #262222;
+}
+.paging:hover {
+	text-decoration: underline;
+}
+.currentPaging {
+	color: #AE4755;
+	font-size: 20px;
+}
